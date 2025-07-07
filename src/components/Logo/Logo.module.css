@@ -1,0 +1,12 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    transition: color var(--time) var(--cubic);
+
+    &:hover,
+    &:focus {
+        color: var(--main-accent);
+    }
+}

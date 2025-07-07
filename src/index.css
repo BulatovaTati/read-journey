@@ -1,16 +1,4 @@
-a {
-  color: currentColor;
-  text-decoration: inherit;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
+@import url('./css/reset.css');
+@import url('./css/fonts.css');
+@import url('./css/variables.css');
+@import url('./css/global.css');

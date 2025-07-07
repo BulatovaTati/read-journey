@@ -1,0 +1,23 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Gilroy', sans-serif;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+  background-color: #141414;
+}
+
+body.ReactModal__Body--open {
+  overflow: hidden;
+}
