@@ -1,0 +1,16 @@
+a {
+  color: currentColor;
+  text-decoration: inherit;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
