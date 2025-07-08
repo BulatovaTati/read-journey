@@ -19,13 +19,20 @@ const authSlice = createSlice({
     builder
       .addCase(registerUser.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
         state.isLoading = false;
-        state.user = action.payload.user;
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+        };
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(loginUser.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
         state.isLoading = false;
-        state.user = action.payload.user;
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+        };
+
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
@@ -39,7 +46,10 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(fetchCurrentUser.fulfilled, (state, action: PayloadAction<User>) => {
-        state.user = action.payload;
+        state.user = {
+          name: action.payload.name,
+          email: action.payload.email,
+        };
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })

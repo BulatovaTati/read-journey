@@ -2,16 +2,15 @@ import { lazy, Suspense, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import useAuth from './hooks/useAuth';
 
-import { fetchCurrentUser } from './redux/auth/operations';
 import Layout from './components/Layout/Layout';
-
 import Loader from './components/Loader/Loader';
 import PrivateRoute from './components/Routes/PrivateRoute';
 import RestrictedRoute from './components/Routes/RestrictedRoute';
 import { useAppDispatch } from './redux/hooks';
+import { fetchCurrentUser } from './redux/auth/operations';
+import CustomToaster from './components/CustomToaster/CustomToaster';
 
-const Register = lazy(() => import('./pages/RegisterPage/RegisterPage'));
-const Login = lazy(() => import('./pages/LoginPage/LoginPage'));
+const Auth = lazy(() => import('./pages/AuthPage/AuthPage'));
 const Recommended = lazy(() => import('./pages/RecommendedPage/RecommendedPage'));
 const Library = lazy(() => import('./pages/MyLibraryPage/MyLibraryPage'));
 const Reading = lazy(() => import('./pages/ReadingPage/ReadingPage'));
@@ -31,6 +30,7 @@ function App() {
 
   return (
     <Suspense fallback={<Loader />}>
+      <CustomToaster />
       <Routes>
         <Route path="/" element={<PrivateRoute component={<Layout />} />}>
           <Route index element={<Navigate to="/recommended" replace />} />
@@ -39,8 +39,8 @@ function App() {
           <Route path="reading" element={<Reading />} />
         </Route>
 
-        <Route path="/register" element={<RestrictedRoute component={<Register />} />} />
-        <Route path="/login" element={<RestrictedRoute component={<Login />} />} />
+        <Route path="/register" element={<RestrictedRoute component={<Auth />} />} />
+        <Route path="/login" element={<RestrictedRoute component={<Auth />} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

@@ -1,12 +1,17 @@
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 0;
-    transition: color var(--time) var(--cubic);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: color var(--time) var(--cubic);
 
-    &:hover,
-    &:focus {
-        color: var(--main-accent);
-    }
+  &:hover,
+  &:focus {
+    color: var(--main-accent);
+  }
 }

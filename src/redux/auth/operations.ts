@@ -12,10 +12,11 @@ export const registerUser = createAsyncThunk<AuthResponse, Credentials, { reject
       setAuthorizationHeader(data.token);
       return data;
     } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || error.message);
+      return rejectWithValue(error.response?.data?.message || 'An unexpected error occurred');
     }
   }
 );
+
 export const loginUser = createAsyncThunk<AuthResponse, Credentials, { rejectValue: string }>(
   '/users/signin',
   async (credentials, { rejectWithValue }) => {
@@ -24,7 +25,9 @@ export const loginUser = createAsyncThunk<AuthResponse, Credentials, { rejectVal
       setAuthorizationHeader(data.token);
       return data;
     } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || error.message);
+      return rejectWithValue(
+        error.response?.data?.message || 'Invalid credentials. Please try again.'
+      );
     }
   }
 );

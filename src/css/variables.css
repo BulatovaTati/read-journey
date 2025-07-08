@@ -10,6 +10,7 @@
   --focusColor: red;
   --blackBackground-color: #141414;
   --whiteLightTransl-color: rgba(249, 249, 249, 0.2);
+  --medium-gray-color: rgba(227, 227, 227, 0.5);
 
   --time: 250ms;
   --cubic: cubic-bezier(0.075, 0.82, 0.165, 1);

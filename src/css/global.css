@@ -10,8 +10,8 @@ body {
   font-size: 14px;
   line-height: 1.28;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
-  background-color: #141414;
+  color: var(--whitePrimary-color);
+  background-color: var(--blackBackground-color);
 }
 
 body.ReactModal__Body--open {

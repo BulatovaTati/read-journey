@@ -1,11 +1,15 @@
 @font-face {
-  font-family: 'Roboto';
-  src: url('/fonts/Gilroy-Medium.ttf') format('truetype');
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-Medium.woff');
+  font-display: swap;
   font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src: url('/fonts/Gilroy-Bold.ttf') format('truetype');
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy-Bold.woff');
+  font-display: swap;
   font-weight: 700;
+  font-style: normal;
 }

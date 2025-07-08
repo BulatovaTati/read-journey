@@ -10,8 +10,10 @@ export interface Credentials {
 }
 
 export interface AuthResponse {
-  user: User;
+  name: string;
+  email: string;
   token: string;
+  refreshToken?: string;
 }
 
 export type CurrentUserResponse = User;
