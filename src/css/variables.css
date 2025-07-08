@@ -1,4 +1,16 @@
 :root {
+  --whitePrimary-color: #f9f9f9;
+  --grayLight-color: #686868;
+  --grayDark-color: rgba(227, 227, 227, 0.3);
+  --grayBlack-color: #262626;
+  --blackLight-color: #1f1f1f;
+  --black: rgb(0, 0, 0);
+  --green-color: #30b94d;
+  --blue-color: #4f92f7;
+  --focusColor: red;
+  --blackBackground-color: #141414;
+  --whiteLightTransl-color: rgba(249, 249, 249, 0.2);
+
   --time: 250ms;
   --cubic: cubic-bezier(0.075, 0.82, 0.165, 1);
 }

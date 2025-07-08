@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header className={s.header}>
       <Container>
-        <Logo />
+        <Logo /> Header
       </Container>
     </header>
   );

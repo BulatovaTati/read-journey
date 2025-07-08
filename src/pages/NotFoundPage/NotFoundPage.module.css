@@ -1,0 +1,33 @@
+.title {
+  margin-bottom: 20px;
+  font-size: 40px;
+  text-align: center;
+  text-shadow: var(--grayDark-color) 0px 5px 10px;
+}
+
+.paragraph {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.link {
+  display: block;
+  padding: 16px 54px;
+  width: 225px;
+
+  margin: 0 auto;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  border-radius: 30px;
+
+  border: 1px solid var(--whiteLightTransl-color);
+
+  transition: background-color var(--time) var(--cubic), color var(--time) var(--cubic);
+
+  &:hover {
+    background-color: var(--whitePrimary-color);
+    color: var(--blackLight-color);
+  }
+}
