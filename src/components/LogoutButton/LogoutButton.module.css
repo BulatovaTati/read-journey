@@ -1,0 +1,27 @@
+.logoutBtn {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: 0.02em;
+  color: var(--whitePrimary-color);
+  background-color: transparent;
+
+  border: 1px solid var(--whiteLightTransl-color);
+  border-radius: 30px;
+  padding: 10px 20px;
+  transition: background-color var(--time) var(--cubic), color var(--time) var(--cubic),
+    border-color var(--time) var(--cubic);
+
+  @media screen and (min-width: 768px) {
+    padding: 12px 28px;
+    font-size: 16px;
+    line-height: 112%;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--whitePrimary-color);
+    border-color: var(--whitePrimary-color);
+    color: var(--blackLight-color);
+  }
+}

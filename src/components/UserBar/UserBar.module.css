@@ -1,0 +1,52 @@
+.userBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  @media screen and (min-width: 768px) {
+    gap: 16px;
+  }
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+
+  background-color: var(--grayBlack-color);
+  border-radius: 50%;
+  border: 1px solid var(--whiteLightTransl-color);
+
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.name {
+  display: none;
+
+  @media (min-width: 1280px) {
+    display: block;
+    margin-right: 16px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
+.mobileMenuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  padding: 14px 0;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--time) var(--cubic);
+}
+
+.mobileMenuIcon {
+  width: 28px;
+  height: 28px;
+}

@@ -18,11 +18,13 @@ import { Credentials } from '../../redux/auth/auth-types';
 import { AuthFormData } from './auth-types';
 
 import s from './AuthForm.module.css';
+import useMedia from '../../hooks/useMedia';
 
 const AuthForm: FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const { isTablet } = useMedia();
   const isLoginPage = location.pathname === '/login';
 
   const formSchema = isLoginPage ? loginSchema : registerSchema;
@@ -69,7 +71,10 @@ const AuthForm: FC = () => {
 
   return (
     <div className={s.formContainer}>
-      <Logo />
+      <div className={s.logo}>
+        <Logo />
+        {isTablet && <span>read journey</span>}
+      </div>
       <div className={s.formWrapper}>
         <h2 className={s.title}>
           Expand your mind, reading <span className={s.highlight}>a book</span>

@@ -1,0 +1,49 @@
+.navigation {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navList {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 32px;
+  }
+}
+
+.link {
+  display: block;
+  color: var(--grayLight-color);
+  transition: color var(--time) var(--cubic);
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: 1.125;
+    padding: 24px 0;
+  }
+
+  &:hover,
+  &:focus {
+    color: var(--whitePrimary-color);
+  }
+}
+
+.active {
+  color: var(--whitePrimary-color);
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    border-radius: 8px;
+    background-color: var(--blue-color);
+    margin-top: 4px;
+  }
+}
