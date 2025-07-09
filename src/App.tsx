@@ -24,9 +24,7 @@ function App() {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
-  if (isRefreshing) {
-    return <Loader />;
-  }
+  if (isRefreshing) return <Loader />;
 
   return (
     <Suspense fallback={<Loader />}>

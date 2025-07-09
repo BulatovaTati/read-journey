@@ -1,0 +1,39 @@
+.btn {
+  height: 42px;
+  font-weight: 700;
+  color: var(--blackLight-color);
+  background-color: var(--whitePrimary-color);
+  border-radius: 30px;
+  border: 1px solid var(--whitePrimary-color);
+
+  transition: color var(--time) var(--cubic), border-color var(--time) var(--cubic),
+    background-color var(--time) var(--cubic);
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    max-width: 225px;
+    height: 52px;
+  }
+
+  &:hover {
+    color: var(--whitePrimary-color);
+    border-color: var(--whiteLightTransl-color);
+    background-color: transparent;
+  }
+}
+
+.loginBtn {
+  min-width: 131px;
+  @media screen and (min-width: 768px) {
+    min-width: 166px;
+  }
+}
+
+.registerBtn {
+  min-width: 140px;
+  @media screen and (min-width: 768px) {
+    min-width: 225px;
+  }
+}

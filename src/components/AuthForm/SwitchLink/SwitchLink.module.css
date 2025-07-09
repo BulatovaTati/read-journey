@@ -1,0 +1,17 @@
+.linkLogin {
+  font-size: 12px;
+  line-height: 1.17;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--grayLight-color);
+  transition: color var(--time) var(--cubic);
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.28;
+  }
+
+  &:hover {
+    color: var(--whitePrimary-color);
+  }
+}
