@@ -1,8 +1,6 @@
 .logoutBtn {
   font-weight: 700;
-  font-size: 14px;
-  line-height: 129%;
-  letter-spacing: 0.02em;
+
   color: var(--whitePrimary-color);
   background-color: transparent;
 
@@ -15,7 +13,8 @@
   @media screen and (min-width: 768px) {
     padding: 12px 28px;
     font-size: 16px;
-    line-height: 112%;
+    line-height: 1.125;
+    letter-spacing: 0.02em;
   }
 
   &:hover,

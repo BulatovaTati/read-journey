@@ -1,0 +1,15 @@
+.overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 342px;
+  height: 290px;
+  padding: 60px 46px;
+  background-color: var(--blackLight-color);
+  border-radius: 12px;
+
+  @media (min-width: 768px) {
+    padding: 49px;
+  }
+}

@@ -20,28 +20,33 @@
   right: 0px;
   padding: 34px 40px 40px;
 
-  background-color: var(--grayBlack-color);
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   z-index: 20;
 
+  transform: translateX(100%);
+  background-color: var(--grayBlack-color);
+  transition: transform var(--time) var(--cubic);
+
   @media screen and (min-width: 768px) {
     display: none;
+  }
+
+  &.open {
+    transform: translateX(0);
   }
 }
 
 .closeBtn {
+  position: absolute;
+  top: 34px;
+  right: 34px;
   background-color: transparent;
   width: 28px;
   height: 28px;
   border: none;
-
-  position: absolute;
-  top: 34px;
-  right: 34px;
 }
 
 .iconClose {

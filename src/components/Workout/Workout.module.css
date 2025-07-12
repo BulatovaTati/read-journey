@@ -1,0 +1,94 @@
+.sectionWorkout {
+  border-radius: 12px;
+  background-color: var(--grayBlack-color);
+  padding: 20px;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+
+  @media (min-width: 768px) {
+    margin-bottom: 40px;
+    font-size: 20px;
+  }
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 40px;
+  height: 40px;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+
+  color: var(--blackLight-color);
+  background-color: var(--whitePrimary-color);
+  border-radius: 50%;
+
+  @media (min-width: 768px) {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 26px;
+    padding-right: 20px;
+  }
+}
+
+.listItem {
+  display: flex;
+  gap: 12px;
+}
+
+.text {
+  color: var(--grayDark-color);
+}
+
+.textTitle {
+  display: inline-block;
+  margin-right: 3px;
+  color: var(--whitePrimary-color);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto 0px;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--grayLight-color);
+
+  transition: color var(--time) var(--cubic);
+
+  &:hover,
+  &:focus {
+    color: var(--whitePrimary-color);
+  }
+}
+
+.icon {
+  color: var(--whitePrimary-color);
+  transition: transform var(--time) var(--cubic);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+}

@@ -7,7 +7,7 @@ import s from './RecommendedPage.module.css';
 const RecommendedPage = () => {
   return (
     <Section>
-      <Container>
+      <Container  modClass={s.recommended}>
         <Recommended />
       </Container>
     </Section>

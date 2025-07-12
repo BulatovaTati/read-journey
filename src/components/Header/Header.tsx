@@ -25,7 +25,7 @@ const Header = () => {
         {isMobile ? (
           <>
             <UserBar onMenuClick={toggleMenu} />
-            {isMenuOpen && <MobileMenu onClose={closeMenu} />}
+            {isMenuOpen && <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />}
           </>
         ) : (
           <>
