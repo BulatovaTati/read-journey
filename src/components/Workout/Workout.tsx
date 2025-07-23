@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import s from './Workout.module.css';
 import Icon from '../Icon/Icon';
+import s from './Workout.module.css';
 
 const Workout = () => {
   return (

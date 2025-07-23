@@ -10,8 +10,8 @@ const Quote = () => {
         <img src={desktopImg} alt="Books image" />
       </picture>
       <p>
-        Books are <span className={s.text}>windows</span> to the world, and reading is a journey
-        into the unknown.
+        "Books are <span className={s.text}>windows</span> to the world, and reading is a journey
+        into the unknown."
       </p>
     </div>
   );

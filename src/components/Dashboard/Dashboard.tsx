@@ -1,18 +1,12 @@
-import Workout from '../Workout/Workout';
-import Quote from '../Quote/Quote';
-import Filter from '../Filter/Filter';
+import { ReactNode, FC } from 'react';
 import s from './Dashboard.module.css';
-import useMedia from '../../hooks/useMedia';
 
-const Dashboard = () => {
-  const { isDesktop } = useMedia();
-  return (
-    <div className={s.dashboard}>
-      <Filter />
-      <Workout />
-      {isDesktop && <Quote />}
-    </div>
-  );
+interface DashboardProps {
+  children: ReactNode;
+}
+
+const Dashboard: FC<DashboardProps> = ({ children }) => {
+  return <div className={s.dashboard}>{children}</div>;
 };
 
 export default Dashboard;

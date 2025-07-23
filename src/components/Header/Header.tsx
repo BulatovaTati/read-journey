@@ -9,7 +9,7 @@ import MobileMenu from '../MobileMenu/MobileMenu';
 import s from './Header.module.css';
 
 const Header = () => {
-  const { isMobile, isDesktop } = useMedia();
+  const { isMobile } = useMedia();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
@@ -17,22 +17,21 @@ const Header = () => {
 
   return (
     <header className={s.header}>
-      <Container modClass={s.headerContainer}>
-        <div className={s.logo}>
+      <Container>
+        <div className={s.headerContainer}>
           <Logo />
-          {isDesktop && <span>read journey</span>}
+          {isMobile ? (
+            <>
+              <UserBar onMenuClick={toggleMenu} />
+              {isMenuOpen && <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />}
+            </>
+          ) : (
+            <>
+              <UserNav />
+              <UserBar />
+            </>
+          )}
         </div>
-        {isMobile ? (
-          <>
-            <UserBar onMenuClick={toggleMenu} />
-            {isMenuOpen && <MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />}
-          </>
-        ) : (
-          <>
-            <UserNav />
-            <UserBar />
-          </>
-        )}
       </Container>
     </header>
   );

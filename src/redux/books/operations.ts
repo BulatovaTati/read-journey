@@ -30,6 +30,7 @@ export const addNewBook = createAsyncThunk<Book, Partial<Book>, { rejectValue: s
   async (books, { rejectWithValue }) => {
     try {
       const { data } = await axios.post<Book>(`/books/add`, books);
+      console.log('data: ', data);
       return data;
     } catch (error: any) {
       return rejectWithValue(error.message);

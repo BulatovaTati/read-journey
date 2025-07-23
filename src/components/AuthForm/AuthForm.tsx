@@ -73,7 +73,6 @@ const AuthForm: FC = () => {
     <div className={s.formContainer}>
       <div className={s.logo}>
         <Logo />
-        {isTablet && <span>read journey</span>}
       </div>
       <div className={s.formWrapper}>
         <h2 className={s.title}>

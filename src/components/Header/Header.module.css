@@ -5,23 +5,14 @@
 }
 
 .headerContainer {
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 15px;
   background-color: var(--blackLight-color);
-}
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-
-  outline: none;
-  text-transform: uppercase;
+  @media screen and (min-width: 768px) {
+    padding: 0 16px;
+  }
 }

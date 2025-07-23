@@ -24,7 +24,7 @@ const Filters: FC = () => {
   const onSubmit: SubmitHandler<FiltersFormInputs> = data => {
     const { title = '', author = '' } = data;
 
-    if (!title.trim() && !author.trim()) {
+    if (!title.trim() || !author.trim()) {
       return toast.error('Complete at least one field of the form');
     }
 
