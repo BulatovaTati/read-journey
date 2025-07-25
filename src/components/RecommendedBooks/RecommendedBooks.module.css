@@ -24,52 +24,6 @@
   }
 }
 
-.list {
-  display: flex;
-  gap: 4px;
-  justify-content: center;
-
-  margin-bottom: 17px;
-
-  @media (min-width: 375px) {
-    gap: 20px;
-  }
-}
-
-.item {
-  width: 64px;
-  height: 141px;
-
-  @media (min-width: 375px) {
-    width: 71px;
-  }
-}
-
-.image {
-  width: 71px;
-  height: 107px;
-  margin-bottom: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.title {
-  margin-bottom: 2px;
-  font-size: 10px;
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.author {
-  font-size: 10px;
-  color: var(--grayLight-color);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .link {
   display: flex;
   align-items: center;
