@@ -1,6 +1,12 @@
+import { FC } from 'react';
+import { Book } from '../../redux/books/books-types';
 import s from './RecommendedBooksList.module.css';
 
-const RecommendedBooksList = ({ results }) => {
+interface RecommendedBooksListProps {
+  results: Book[];
+}
+
+const RecommendedBooksList: FC<RecommendedBooksListProps> = ({ results }) => {
   return (
     <ul className={s.list}>
       {results?.slice(0, 3).map(book => (
