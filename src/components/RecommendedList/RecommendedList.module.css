@@ -1,18 +1,15 @@
 .recommendedList {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-evenly; */
   column-gap: 20px;
   row-gap: 27px;
 
   @media (min-width: 768px) {
     column-gap: 25px;
-    /* justify-content: start; */
   }
 
   @media (min-width: 1280px) {
     column-gap: 20px;
-    /* justify-content: space-evenly; */
   }
 }
 
@@ -21,12 +18,6 @@
   height: 248px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color var(--time) var(--cubic);
-
-  &:hover,
-  &:focus {
-    background-color: var(--grayBlack-color);
-  }
 
   &:hover > .image,
   &:focus > .image {
