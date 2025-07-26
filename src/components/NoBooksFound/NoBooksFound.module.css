@@ -1,0 +1,50 @@
+.errorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 63px;
+  margin: 63px 0;
+
+  @media (min-width: 768px) {
+    margin: 86px 0 120px 0;
+  }
+
+  @media (min-width: 1280px) {
+    margin: 147px 0 0;
+  }
+}
+
+.picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--grayBlack-color);
+  margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 20px;
+  }
+}
+
+.image {
+  width: 50px;
+
+  @media (min-width: 768px) {
+    width: 70px;
+  }
+}
+
+.errorTest {
+  text-align: center;
+  max-width: 274px;
+}
+
+.errorAccent {
+  color: var(--grayLight-color);
+}

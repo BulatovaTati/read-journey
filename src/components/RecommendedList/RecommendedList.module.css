@@ -42,6 +42,12 @@
   transition: border-color var(--time) var(--cubic);
 }
 
+.infoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .info {
   max-width: 137px;
 }
@@ -82,4 +88,14 @@
   align-items: center;
   height: 100%;
   width: 100%;
+}
+
+.deleteBtn {
+  background: transparent;
+  transition: transform 0.25s linear;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
 }

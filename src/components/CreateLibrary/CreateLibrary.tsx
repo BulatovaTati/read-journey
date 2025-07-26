@@ -28,7 +28,13 @@ const CreateLibrary = () => {
   const dispatch = useAppDispatch();
   const ownLibrary = useSelector(selectOwnBooks) as Book[];
 
-  const { register, handleSubmit, reset } = useForm<BookFormInputs>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm<BookFormInputs>({
     resolver: yupResolver(schemaCreateLibrary),
     shouldFocusError: false,
   });
@@ -56,7 +62,7 @@ const CreateLibrary = () => {
 
   return (
     <div>
-      <h2 className={s.title}>Filters:</h2>
+      <h2 className={s.title}>Create your library:</h2>
       <form onSubmit={handleSubmit(onSubmit, onError)} className={s.form}>
         <div className={s.inputsWrapper}>
           <div className={s.wrapperInput}>
