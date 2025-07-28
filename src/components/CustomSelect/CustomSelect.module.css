@@ -1,0 +1,16 @@
+.selectWrapper {
+  border: 1px solid #3e3e3e;
+  border-radius: 12px;
+
+  width: 120px;
+  height: 40px;
+  font-size: 12px;
+  line-height: 1.33333;
+
+  @media (min-width: 768px) {
+    width: 153px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 1.29;
+  }
+}

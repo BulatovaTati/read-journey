@@ -29,6 +29,11 @@ export interface ReadingRecord {
   progressPages: number;
 }
 
+export interface FilterOption {
+  value: string;
+  label: string;
+}
+
 export interface BooksState {
   data: Book[];
   myBooks: Book[];
@@ -37,6 +42,7 @@ export interface BooksState {
   totalPages: number;
   readBook: ReadingRecord[];
   allInfoBook: Book | null;
+  filter: FilterOption;
 }
 
 export interface FetchRecommendedBooksResponse {

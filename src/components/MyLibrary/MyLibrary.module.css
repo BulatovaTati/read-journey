@@ -27,3 +27,11 @@
     letter-spacing: 0.02em;
   }
 }
+
+.select {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  @media (min-width: 768px) {
+  }
+}

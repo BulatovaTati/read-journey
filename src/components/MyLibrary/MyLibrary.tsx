@@ -8,6 +8,7 @@ import { fetchOwnBooks } from '../../redux/books/operations';
 import RecommendedList from '../RecommendedList/RecommendedList';
 import { useSelector } from 'react-redux';
 import { selectOwnBooks } from '../../redux/books/selectors';
+import CustomSelect from '../CustomSelect/CustomSelect';
 
 const MyLibrary = () => {
   const dispatch = useAppDispatch();
@@ -25,7 +26,10 @@ const MyLibrary = () => {
       </Dashboard>
 
       <div className={s.library}>
-        <h1 className={s.title}>My library</h1>
+        <div className={s.select}>
+          <h1 className={s.title}>My library</h1>
+          <CustomSelect />
+        </div>
         <RecommendedList results={ownLibrary} />
       </div>
     </>

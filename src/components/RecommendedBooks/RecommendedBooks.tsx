@@ -13,19 +13,16 @@ import { selectBookData, selectTotalPages } from '../../redux/books/selectors';
 import { Book } from '../../redux/books/books-types';
 
 import s from './RecommendedBooks.module.css';
-import useMedia from '../../hooks/useMedia';
 
 const RecommendedBooks: FC = () => {
   const results = useSelector(selectBookData) as Book[];
   const totalPages = useSelector(selectTotalPages) as number;
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
-  const { isMobile } = useMedia();
-  const limit = isMobile ? 3 : 3;
 
   useEffect(() => {
-    dispatch(fetchRecommendedBooks({ page, limit }));
-  }, [dispatch, page, limit]);
+    dispatch(fetchRecommendedBooks({ page }));
+  }, [dispatch, page]);
 
   const handlePageChange = (newPage: number): void => {
     if (newPage >= 1 && newPage <= totalPages) {

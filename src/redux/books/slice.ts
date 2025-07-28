@@ -20,12 +20,17 @@ const initialState: BooksState = {
   totalPages: 1,
   readBook: [],
   allInfoBook: null,
+  filter: { value: '', label: 'All books' },
 };
 
 const bookSlice = createSlice({
   name: 'book',
   initialState,
-  reducers: {},
+  reducers: {
+    saveFilter(state, { payload }) {
+      state.filter = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchRecommendedBooks.fulfilled, (state, action) => {
@@ -101,4 +106,7 @@ const bookSlice = createSlice({
       );
   },
 });
+
+export const { saveFilter } = bookSlice.actions;
+
 export const bookReducer = bookSlice.reducer;

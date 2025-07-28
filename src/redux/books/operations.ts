@@ -13,7 +13,7 @@ export const fetchRecommendedBooks = createAsyncThunk<
   { rejectValue: string }
 >(
   'books/fetchRecommendedBooks',
-  async ({ page = 1, limit = 10, title = '', author = '' }, { rejectWithValue }) => {
+  async ({ page = 1, limit = 3, title = '', author = '' }, { rejectWithValue }) => {
     try {
       const { data } = await axios.get<FetchRecommendedBooksResponse>(
         `/books/recommend?page=${page}&limit=${limit}&title=${title}&author=${author}`
