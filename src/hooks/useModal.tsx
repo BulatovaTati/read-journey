@@ -7,8 +7,11 @@ type ModalDataMap = {
     bookId: string;
     title: string;
     author: string;
+    totalPages: number;
+    imageUrl: string;
   };
   addedToLibrary: undefined;
+  errorToLibrary: undefined;
   startTraining: undefined;
 };
 
@@ -27,6 +30,7 @@ export const useModal = () => {
   const closeModal = () => {
     setModalType(null);
     setModalData(null);
+    document.body.classList.remove('ReactModal__Body--open');
   };
 
   const isOpen = modalType !== null;

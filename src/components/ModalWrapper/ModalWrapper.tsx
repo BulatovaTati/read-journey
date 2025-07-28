@@ -19,10 +19,10 @@ const ModalWrapper = ({ children, isOpen, onClose }: ModalWrapperProps) => {
       onRequestClose={onClose}
       className={s.modal}
       overlayClassName={s.overlay}
-      preventScroll={false}
+      ariaHideApp={true}
     >
       <button type="button" className={s.closeBtn} onClick={onClose}>
-        <Icon iconName="icon-x" className={s.iconClose} />
+        <Icon iconName="icon-x" className={s.iconClose} width={22} height={22} />
       </button>
       {children}
     </Modal>

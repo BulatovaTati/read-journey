@@ -1,14 +1,19 @@
 import { FC } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Book } from '../../redux/books/books-types';
+
 import Loader from '../Loader/Loader';
 import NoBooksFound from '../NoBooksFound/NoBooksFound';
+import { useModal } from '../../hooks/useModal';
 
-import notFoundImg2x from '/images/desktop-default-image@2x.jpg';
-import s from './RecommendedList.module.css';
-import Icon from '../Icon/Icon';
-import { useLocation } from 'react-router-dom';
 import { useAppDispatch } from '../../redux/hooks';
-import { deleteBook } from '../../redux/books/operations';
+import { addBookById, deleteBook } from '../../redux/books/operations';
+import { selectOwnBooks } from '../../redux/books/selectors';
+import RecommendedModals from '../Modals/RecommendedModals/RecommendedModals';
+import RecommendedItem from './RecommendedItem';
+
+import s from './RecommendedList.module.css';
 
 interface RecommendedListProps {
   results: Book[];
@@ -18,7 +23,10 @@ interface RecommendedListProps {
 const RecommendedList: FC<RecommendedListProps> = ({ results, isLoading }) => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
+  const { isOpen, modalType, modalData, openModal, closeModal } = useModal();
+
   const isLibraryPage = pathname.includes('library');
+  const ownLibrary = useSelector(selectOwnBooks);
 
   if (isLoading) {
     return (
@@ -32,44 +40,49 @@ const RecommendedList: FC<RecommendedListProps> = ({ results, isLoading }) => {
     return <NoBooksFound />;
   }
 
-  const handleDelete = (bookId: string) => {
-    dispatch(deleteBook(bookId));
+  const handleDelete = (bookId: string) => dispatch(deleteBook(bookId));
+
+  const handleImageClick = (book: Book) => {
+    openModal('bookInfo', {
+      bookId: book._id,
+      title: book.title,
+      author: book.author,
+      totalPages: book.totalPages,
+      imageUrl: book.imageUrl,
+    });
   };
 
+  const handleAddToLibrary = () => {
+    const bookExists = ownLibrary.find(item => item.title === modalData?.title);
+    if (!bookExists) {
+      dispatch(addBookById(modalData?.bookId!));
+      openModal('addedToLibrary');
+    } else {
+      openModal('errorToLibrary');
+    }
+  };
   return (
-    <ul className={s.recommendedList}>
-      {results.map(book => {
-        const imageSrc = book.imageUrl ? book.imageUrl : notFoundImg2x;
+    <>
+      <ul className={s.recommendedList}>
+        {results.map(book => (
+          <RecommendedItem
+            key={book._id}
+            book={book}
+            isLibraryPage={isLibraryPage}
+            onImageClick={handleImageClick}
+            onDelete={handleDelete}
+          />
+        ))}
+      </ul>
 
-        return (
-          <li className={s.recommendedItem} key={book._id}>
-            <img
-              src={imageSrc}
-              alt={book.title}
-              className={s.image}
-              onError={e => {
-                (e.currentTarget as HTMLImageElement).src = notFoundImg2x;
-              }}
-            />
-            <div className={s.infoContainer}>
-              <div className={s.info}>
-                <p className={s.title}>{book.title}</p>
-                <p className={s.author}>{book.author}</p>
-              </div>
-              {isLibraryPage && (
-                <button
-                  type="button"
-                  className={s.deleteBtn}
-                  onClick={() => handleDelete(book._id)}
-                >
-                  <Icon iconName="icon-delete" className={s.iconDelete} width={28} height={28} />
-                </button>
-              )}
-            </div>
-          </li>
-        );
-      })}
-    </ul>
+      <RecommendedModals
+        isOpen={isOpen}
+        modalType={modalType}
+        modalData={modalData}
+        closeModal={closeModal}
+        handleAddToLibrary={handleAddToLibrary}
+      />
+    </>
   );
 };
 
