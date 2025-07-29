@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import ModalWrapper from '../../ModalWrapper/ModalWrapper';
-import s from '../SuccessModal/SuccessModal.module.css';
+import s from '../ModalAddToLibrary/ModalAddToLibrary.module.css';
 
 type ErrorModalProps = {
   isOpen: boolean;
@@ -11,9 +11,9 @@ type ErrorModalProps = {
 const ErrorModal: FC<ErrorModalProps> = ({ isOpen, onClose }) => {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
-      <p className={s.successMessage}>Ooops</p>
-      <h2 className={s.text}>
-        The book <span className={s.name}>has already been added</span> to the library!
+      <p className={s.title}>Ooops</p>
+      <h2 className={s.author}>
+        The book has <span className={s.name}>already</span> been added to the library!
       </h2>
     </ModalWrapper>
   );

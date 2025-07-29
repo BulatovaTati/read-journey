@@ -20,7 +20,7 @@ const SuccessModal: FC<SuccessModalProps> = ({ isOpen, onClose }) => {
         <source srcSet={`${likeDesktop} 1x, ${likeDesktop2x} 2x`} media="(min-width: 768px)" />
         <img className={s.image} src={likeDesktop} alt="add book" />
       </picture>
-      <p className={s.successMessage}>Good job</p>
+      <p className={s.title}>Good job</p>
       <h2 className={s.text}>
         Your book is now in <span className={s.name}>the library!</span> The joy knows no bounds and
         now you can start your training

@@ -20,10 +20,10 @@ const ModalAddToLibrary = ({ modalData, isOpen, closeModal, onClick }: ModalAddT
 
   return (
     <ModalWrapper isOpen={isOpen} onClose={closeModal}>
-      <img src={modalData.imageUrl || notFoundImg2x} />
+      <img src={modalData.imageUrl || notFoundImg2x} className={s.image} />
       <h2 className={s.title}>{modalData.title}</h2>
       <p className={s.author}>{modalData.author}</p>
-      <p className={s.author}>{modalData.totalPages} pages</p>
+      <p className={s.pages}>{modalData.totalPages} pages</p>
       <button className={s.addButton} onClick={onClick}>
         Add to library
       </button>

@@ -1,0 +1,77 @@
+.image {
+  width: 140px;
+  height: 213px;
+  margin-bottom: 16px;
+
+  border-radius: 8px;
+
+  @media (min-width: 768px) {
+    width: 153px;
+    height: 233px;
+  }
+}
+
+.title {
+  margin-bottom: 2px;
+
+  text-align: center;
+  font-size: 18px;
+  line-height: 1;
+
+  @media (min-width: 768px) {
+    max-width: 400px;
+
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.author {
+  margin-bottom: 4px;
+
+  font-size: 12px;
+  text-align: center;
+  color: var(--grayLight-color);
+
+  @media (min-width: 768px) {
+    max-width: 400px;
+
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.pages {
+  margin-bottom: 20px;
+  font-size: 10px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 32px;
+  }
+}
+
+.addButton {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  background-color: transparent;
+  color: currentColor;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+  transition: color var(--time) var(--cubic), background-color var(--time) var(--cubic);
+
+  &:hover,
+  &:focus {
+    color: var(--blackLight-color);
+    background-color: var(--whitePrimary-color);
+  }
+}
+
+.name {
+  color: var(--whitePrimary-color);
+}

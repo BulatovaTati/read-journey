@@ -12,12 +12,15 @@
 
 .modal {
   position: relative;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 40px;
+
   max-width: 335px;
-  width: 94%;
-  height: 439px;
-  max-height: 94vh;
+
+  min-height: 272px;
   border: none;
   border-radius: 8px;
   overflow-y: auto;
@@ -26,7 +29,7 @@
   outline: none;
 
   @media screen and (min-width: 768px) {
-    width: 500px;
+    max-width: 500px;
     height: 483px;
     padding: 50px;
   }

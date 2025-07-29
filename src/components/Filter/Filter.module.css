@@ -79,7 +79,7 @@
   line-height: 1.29;
   letter-spacing: 0.02em;
   border-radius: 30px;
-  color: var(--whitePrimary-color);
+  color: currentColor;
   background-color: transparent;
   border: 1px solid var(--whiteLightTransl-color);
   outline: none;
