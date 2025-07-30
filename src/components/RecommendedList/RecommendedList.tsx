@@ -5,13 +5,13 @@ import { Book } from '../../redux/books/books-types';
 
 import Loader from '../Loader/Loader';
 import NoBooksFound from '../NoBooksFound/NoBooksFound';
-import { useModal } from '../../hooks/useModal';
+import RecommendedModals from '../Modals/RecommendedModals/RecommendedModals';
+import RecommendedItem from './RecommendedItem';
 
+import { useModalContext } from '../../context/ModalContext';
 import { useAppDispatch } from '../../redux/hooks';
 import { addBookById, deleteBook } from '../../redux/books/operations';
 import { selectOwnBooks } from '../../redux/books/selectors';
-import RecommendedModals from '../Modals/RecommendedModals/RecommendedModals';
-import RecommendedItem from './RecommendedItem';
 
 import s from './RecommendedList.module.css';
 
@@ -23,7 +23,7 @@ interface RecommendedListProps {
 const RecommendedList: FC<RecommendedListProps> = ({ results, isLoading }) => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
-  const { isOpen, modalType, modalData, openModal, closeModal } = useModal();
+  const { isOpen, modalType, modalData, openModal, closeModal } = useModalContext();
 
   const isLibraryPage = pathname.includes('library');
   const ownLibrary = useSelector(selectOwnBooks);

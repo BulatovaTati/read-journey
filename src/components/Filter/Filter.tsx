@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../redux/hooks';
 import { fetchRecommendedBooks } from '../../redux/books/operations';
 
 import s from './Filter.module.css';
+import useMedia from '../../hooks/useMedia';
 
 interface FiltersFormInputs {
   title?: string;
@@ -13,6 +14,8 @@ interface FiltersFormInputs {
 
 const Filters: FC = () => {
   const dispatch = useAppDispatch();
+  const { isMobile, isTablet } = useMedia();
+  const limit = isMobile ? 2 : isTablet ? 8 : 10;
 
   const { register, handleSubmit, reset, watch } = useForm<FiltersFormInputs>({
     defaultValues: {
@@ -24,16 +27,16 @@ const Filters: FC = () => {
   const onSubmit: SubmitHandler<FiltersFormInputs> = data => {
     const { title = '', author = '' } = data;
 
-    if (!title.trim() || !author.trim()) {
+    if (!title.trim() && !author.trim()) {
       return toast.error('Complete at least one field of the form');
     }
 
-    dispatch(fetchRecommendedBooks({ title, author }));
+    dispatch(fetchRecommendedBooks({ title: title.trim(), author: author.trim() }));
   };
 
   const handleReset = () => {
     reset();
-    dispatch(fetchRecommendedBooks({ page: 1, limit: 10 }));
+    dispatch(fetchRecommendedBooks({ page: 1, limit }));
   };
 
   const title = watch('title');

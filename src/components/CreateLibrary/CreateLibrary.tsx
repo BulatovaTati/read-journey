@@ -9,6 +9,7 @@ import { addNewBook, fetchOwnBooks } from '../../redux/books/operations';
 
 import { schemaCreateLibrary } from '../../validations/createOwnLibraryValidation';
 import { useAppDispatch } from '../../redux/hooks';
+import { useModalContext } from '../../context/ModalContext';
 
 import s from '../Filter/Filter.module.css';
 
@@ -27,15 +28,17 @@ interface Book {
 const CreateLibrary = () => {
   const dispatch = useAppDispatch();
   const ownLibrary = useSelector(selectOwnBooks) as Book[];
+  const { openModal } = useModalContext();
 
   const {
     register,
     handleSubmit,
     reset,
-    watch,
+
     formState: { errors },
   } = useForm<BookFormInputs>({
     resolver: yupResolver(schemaCreateLibrary),
+    mode: 'onChange',
     shouldFocusError: false,
   });
 
@@ -51,9 +54,13 @@ const CreateLibrary = () => {
       toast.error('The book is already in the library');
       return;
     }
-
-    dispatch(addNewBook({ title, author, totalPages: page }));
-    reset();
+    try {
+      dispatch(addNewBook({ title, author, totalPages: page })).unwrap();
+      reset();
+      openModal('addedToLibrary');
+    } catch (error) {
+      toast.error('Failed to add the book. Please try again.');
+    }
   };
 
   const onError = (errors: FieldErrors<BookFormInputs>) => {
@@ -77,6 +84,7 @@ const CreateLibrary = () => {
               className={s.input}
               placeholder="I See You Are Interested In The Dark"
             />
+            {errors.title && <p className={s.error}>{errors.title.message}</p>}
           </div>
           <div className={s.wrapperInput}>
             <div className={s.labelContainer}>
@@ -90,6 +98,7 @@ const CreateLibrary = () => {
               className={s.input}
               placeholder="Hilarion Pavlyuk"
             />
+            {errors.author && <p className={s.error}>{errors.author.message}</p>}
           </div>
           <div className={s.wrapperInput}>
             <div className={s.labelContainer}>
@@ -101,9 +110,10 @@ const CreateLibrary = () => {
               id="page"
               {...register('page')}
               className={s.input}
-              type="number"
+              type="text"
               placeholder="664"
             />
+            {errors.page && <p className={s.error}>{errors.page.message}</p>}
           </div>
         </div>
         <button type="submit" className={s.btn}>

@@ -2,9 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   column-gap: 20px;
+  justify-content: center;
   row-gap: 27px;
 
   @media (min-width: 768px) {
+    justify-content: start;
     column-gap: 25px;
   }
 
@@ -15,6 +17,7 @@
 
 .recommendedItem {
   width: calc((100% - 20px) / 2);
+  max-width: 135px;
   height: 248px;
   border-radius: 8px;
   cursor: pointer;
@@ -26,6 +29,7 @@
 
   @media (min-width: 768px) {
     width: calc((100% - 25px * 3) / 4);
+    max-width: 100%;
   }
 
   @media (min-width: 1280px) {
@@ -44,17 +48,23 @@
 
 .infoContainer {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 }
 
 .info {
-  max-width: 137px;
+  max-width: 62px;
+
+  @media (min-width: 768px) {
+    max-width: 95px;
+  }
 }
 
 .title {
   margin-bottom: 2px;
   white-space: nowrap;
+
   font-weight: 700;
   overflow: hidden;
   text-overflow: ellipsis;
