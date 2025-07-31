@@ -13,6 +13,7 @@
 .item {
   width: 64px;
   height: 141px;
+  cursor: pointer;
 
   @media (min-width: 375px) {
     width: 71px;
@@ -24,7 +25,6 @@
   height: 107px;
   margin-bottom: 8px;
   border-radius: 8px;
-  cursor: pointer;
 }
 
 .title {
