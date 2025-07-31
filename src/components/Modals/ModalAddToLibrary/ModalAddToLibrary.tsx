@@ -13,9 +13,19 @@ interface ModalAddToLibraryProps {
   isOpen: boolean;
   closeModal: () => void;
   onClick: () => void;
+
+  onRemoveClick: () => void;
+  isInLibrary: boolean;
 }
 
-const ModalAddToLibrary = ({ modalData, isOpen, closeModal, onClick }: ModalAddToLibraryProps) => {
+const ModalAddToLibrary = ({
+  modalData,
+  isOpen,
+  closeModal,
+  onClick,
+  onRemoveClick,
+  isInLibrary,
+}: ModalAddToLibraryProps) => {
   if (!modalData) return null;
 
   return (
@@ -24,9 +34,16 @@ const ModalAddToLibrary = ({ modalData, isOpen, closeModal, onClick }: ModalAddT
       <h2 className={s.title}>{modalData.title}</h2>
       <p className={s.author}>{modalData.author}</p>
       <p className={s.pages}>{modalData.totalPages} pages</p>
-      <button className={s.addButton} onClick={onClick}>
-        Add to library
-      </button>
+
+      {isInLibrary ? (
+        <button className={s.addButton} onClick={onRemoveClick}>
+          Remove from library
+        </button>
+      ) : (
+        <button className={s.addButton} onClick={onClick}>
+          Add to library
+        </button>
+      )}
     </ModalWrapper>
   );
 };

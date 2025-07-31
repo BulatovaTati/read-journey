@@ -61,6 +61,20 @@ const RecommendedList: FC<RecommendedListProps> = ({ results, isLoading }) => {
       openModal('errorToLibrary');
     }
   };
+
+  const handleRemoveFromLibrary = () => {
+    const bookInLibrary = ownLibrary.find(
+      book => book.title === modalData?.title && book.author === modalData?.author
+    );
+
+    if (bookInLibrary) {
+      dispatch(deleteBook(bookInLibrary._id));
+      closeModal();
+    }
+  };
+
+  const isInLibrary = ownLibrary.some(book => book.title === modalData?.title);
+
   return (
     <>
       <ul className={s.recommendedList}>
@@ -81,6 +95,8 @@ const RecommendedList: FC<RecommendedListProps> = ({ results, isLoading }) => {
         modalData={modalData}
         closeModal={closeModal}
         handleAddToLibrary={handleAddToLibrary}
+        handleRemoveFromLibrary={handleRemoveFromLibrary}
+        isInLibrary={isInLibrary}
       />
     </>
   );

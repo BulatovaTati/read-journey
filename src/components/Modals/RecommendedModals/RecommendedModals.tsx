@@ -2,6 +2,7 @@ import { FC } from 'react';
 import ModalAddToLibrary from '../ModalAddToLibrary/ModalAddToLibrary';
 import SuccessModal from '../SuccessModal/SuccessModal';
 import ErrorModal from '../ErrorModal/ErrorModal';
+import { Book } from '../../../redux/books/books-types';
 
 interface RecommendedModalsProps {
   isOpen: boolean;
@@ -9,6 +10,8 @@ interface RecommendedModalsProps {
   modalData: any;
   closeModal: () => void;
   handleAddToLibrary: () => void;
+  handleRemoveFromLibrary: () => void;
+  isInLibrary: boolean;
 }
 
 const RecommendedModals: FC<RecommendedModalsProps> = ({
@@ -17,6 +20,8 @@ const RecommendedModals: FC<RecommendedModalsProps> = ({
   modalData,
   closeModal,
   handleAddToLibrary,
+  handleRemoveFromLibrary,
+  isInLibrary,
 }) => {
   if (!isOpen) return null;
 
@@ -28,6 +33,8 @@ const RecommendedModals: FC<RecommendedModalsProps> = ({
           isOpen={isOpen}
           closeModal={closeModal}
           onClick={handleAddToLibrary}
+          onRemoveClick={handleRemoveFromLibrary}
+          isInLibrary={isInLibrary}
         />
       );
     case 'addedToLibrary':
