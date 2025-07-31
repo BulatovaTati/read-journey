@@ -1,6 +1,7 @@
 .container {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
 .button {
@@ -9,15 +10,10 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  margin-right: 8px;
 
   background-color: transparent;
   border-radius: 50%;
   border: 1px solid var(--whiteLightTransl-color);
-
-  &:last-child {
-    margin-right: 0;
-  }
 
   transition: transform var(--time) var(--cubic);
 
