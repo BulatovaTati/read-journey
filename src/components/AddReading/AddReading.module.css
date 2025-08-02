@@ -1,0 +1,106 @@
+.container {
+  margin-bottom: 20px;
+}
+
+.title {
+  margin-bottom: 8px;
+  margin-left: 14px;
+  font-size: 10px;
+  line-height: 1.2;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.29;
+  }
+}
+
+.wrapperInput {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 12px;
+  background-color: var(--grayBlack-color);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.labelContainer {
+  flex-shrink: 0;
+}
+
+.label {
+  color: var(--grayDark-color);
+  font-size: 12px;
+  line-height: 1.33;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.28571;
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.33;
+
+  color: var(--whitePrimary-color);
+  background-color: var(--grayBlack-color);
+  border: 1px solid transparent;
+  outline: none;
+
+  &::placeholder {
+    color: var(--whitePrimary-color);
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.28571;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 313px;
+  }
+}
+
+.button {
+  width: 98px;
+  height: 38px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: 0.02em;
+  border-radius: 30px;
+  color: currentColor;
+  background-color: transparent;
+  border: 1px solid var(--whiteLightTransl-color);
+  outline: none;
+  transition: all var(--time) var(--cubic);
+
+  &:hover,
+  &:focus {
+    color: var(--blackLight-color);
+    background-color: var(--whitePrimary-color);
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 122px;
+    height: 42px;
+    font-size: 16px;
+    line-height: 1.125;
+  }
+}
+
+.error {
+  position: absolute;
+  bottom: 0;
+  color: red;
+  font-size: 10px;
+  line-height: 1.2;
+}

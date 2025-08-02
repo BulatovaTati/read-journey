@@ -7,7 +7,7 @@ import s from './ReadingPage.module.css';
 const ReadingPage = () => {
   return (
     <Section>
-      <Container>
+      <Container modClass={s.reading}>
         <Reading />
       </Container>
     </Section>

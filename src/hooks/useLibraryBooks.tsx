@@ -14,7 +14,7 @@ export const useLibraryBooks = () => {
   const limit = isMobile ? 2 : isTablet ? 8 : 10;
 
   const [page, setPage] = useState<number>(1);
-  const totalPages = Math.ceil(ownBooks.length / limit);
+  const totalPages = Math.max(1, Math.ceil(ownBooks.length / limit));
   const paginatedBooks = ownBooks.slice((page - 1) * limit, page * limit);
 
   const handlePageChange = (newPage: number): void => {

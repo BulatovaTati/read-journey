@@ -2,7 +2,6 @@ import { FC } from 'react';
 import ModalAddToLibrary from '../ModalAddToLibrary/ModalAddToLibrary';
 import SuccessModal from '../SuccessModal/SuccessModal';
 import ErrorModal from '../ErrorModal/ErrorModal';
-import { Book } from '../../../redux/books/books-types';
 
 interface RecommendedModalsProps {
   isOpen: boolean;

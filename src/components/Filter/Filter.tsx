@@ -3,9 +3,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useAppDispatch } from '../../redux/hooks';
 import { fetchRecommendedBooks } from '../../redux/books/operations';
+import useMedia from '../../hooks/useMedia';
 
 import s from './Filter.module.css';
-import useMedia from '../../hooks/useMedia';
 
 interface FiltersFormInputs {
   title?: string;
