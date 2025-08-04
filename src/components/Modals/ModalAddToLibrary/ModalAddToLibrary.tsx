@@ -16,6 +16,8 @@ interface ModalAddToLibraryProps {
 
   onRemoveClick: () => void;
   isInLibrary: boolean;
+  handleStartReading?: () => void;
+  isLibraryPage: boolean;
 }
 
 const ModalAddToLibrary = ({
@@ -25,6 +27,8 @@ const ModalAddToLibrary = ({
   onClick,
   onRemoveClick,
   isInLibrary,
+  handleStartReading,
+  isLibraryPage,
 }: ModalAddToLibraryProps) => {
   if (!modalData) return null;
 
@@ -36,9 +40,17 @@ const ModalAddToLibrary = ({
       <p className={s.pages}>{modalData.totalPages} pages</p>
 
       {isInLibrary ? (
-        <button className={s.addButton} onClick={onRemoveClick}>
-          Remove from library
-        </button>
+        <div className={s.btnContainer}>
+          <button className={s.addButton} onClick={onRemoveClick}>
+            Remove from library
+          </button>
+
+          {isLibraryPage && handleStartReading && (
+            <button className={s.addButton} onClick={handleStartReading}>
+              Start reading
+            </button>
+          )}
+        </div>
       ) : (
         <button className={s.addButton} onClick={onClick}>
           Add to library

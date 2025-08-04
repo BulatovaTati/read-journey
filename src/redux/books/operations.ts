@@ -116,10 +116,10 @@ export const deleteReadingRecord = createAsyncThunk<
 });
 
 export const fetchBookDetails = createAsyncThunk<Book, string, { rejectValue: string }>(
-  'books/id',
-  async (id, thunkAPI) => {
+  'books/bookId',
+  async (bookId, thunkAPI) => {
     try {
-      const { data } = await axios.get<Book>(`/books/${id}`);
+      const { data } = await axios.get<Book>(`/books/${bookId}`);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.message);

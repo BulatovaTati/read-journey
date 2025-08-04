@@ -34,7 +34,7 @@ function App() {
           <Route index element={<Navigate to="/recommended" replace />} />
           <Route path="recommended" element={<Recommended />} />
           <Route path="library" element={<Library />} />
-          <Route path="reading" element={<Reading />} />
+          <Route path="/reading/:bookId" element={<Reading />} />
         </Route>
 
         <Route path="/register" element={<RestrictedRoute component={<Auth />} />} />

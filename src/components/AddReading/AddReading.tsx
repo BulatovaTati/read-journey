@@ -1,26 +1,28 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
-import s from './AddReading.module.css';
 import { useAppDispatch } from '../../redux/hooks';
 import { selectInfoCurrentBook, selectReadBook } from '../../redux/books/selectors';
 import { fetchBookDetails, readingStart, readingStop } from '../../redux/books/operations';
+import { addReadingSchema } from '../../validations/addReadingValidation';
+import s from './AddReading.module.css';
 
-const addReadingSchema = Yup.object().shape({
-  page: Yup.string()
-    .required('Page number is required')
-    .matches(/^[0-9]+$/, 'Must be only digits')
-    .transform((value, originalValue) => originalValue.replace(/\s/g, '')),
-});
+interface AddReadingProps {
+  selectedBook: string | undefined;
+  onReadChange: (isReading: boolean) => void;
+}
 
-const AddReading = ({ selectedBook, onReadChange }) => {
+interface FormValues {
+  page: string;
+}
+
+const AddReading: FC<AddReadingProps> = ({ selectedBook, onReadChange }) => {
   const dispatch = useAppDispatch();
   const infoAboutBook = useSelector(selectInfoCurrentBook);
   const readBook = useSelector(selectReadBook);
-  const [read, setRead] = useState(false);
-  const [pageError, setPageError] = useState('');
+  const [read, setRead] = useState<boolean>(false);
+  const [pageError, setPageError] = useState<string>('');
 
   const {
     register,
@@ -28,7 +30,7 @@ const AddReading = ({ selectedBook, onReadChange }) => {
     setValue,
     reset,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormValues>({
     resolver: yupResolver(addReadingSchema),
     defaultValues: {
       page: '',
@@ -41,8 +43,10 @@ const AddReading = ({ selectedBook, onReadChange }) => {
     }
   }, [selectedBook, dispatch, readBook]);
 
-  const onSubmit = data => {
+  const onSubmit: SubmitHandler<FormValues> = data => {
     const pageNumber = parseInt(data.page, 10);
+
+    if (!infoAboutBook) return;
 
     if (pageNumber > infoAboutBook.totalPages) {
       setPageError(`Page number must not exceed ${infoAboutBook.totalPages}`);
@@ -52,7 +56,7 @@ const AddReading = ({ selectedBook, onReadChange }) => {
     }
 
     const requestData = {
-      id: selectedBook,
+      id: selectedBook!,
       page: data.page,
     };
 
@@ -88,7 +92,12 @@ const AddReading = ({ selectedBook, onReadChange }) => {
             onChange={e => {
               const value = e.target.value;
               setValue('page', value);
-              if (parseInt(value, 10) > infoAboutBook.totalPages && !isNaN(value) && value !== '') {
+              if (
+                infoAboutBook &&
+                parseInt(value, 10) > infoAboutBook.totalPages &&
+                !isNaN(parseInt(value, 10)) &&
+                value !== ''
+              ) {
                 setPageError(`Page number must not exceed ${infoAboutBook.totalPages}`);
               } else {
                 setPageError('');

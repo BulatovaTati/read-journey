@@ -11,6 +11,8 @@ interface RecommendedModalsProps {
   handleAddToLibrary: () => void;
   handleRemoveFromLibrary: () => void;
   isInLibrary: boolean;
+  handleStartReading?: () => void;
+  isLibraryPage: boolean;
 }
 
 const RecommendedModals: FC<RecommendedModalsProps> = ({
@@ -21,6 +23,8 @@ const RecommendedModals: FC<RecommendedModalsProps> = ({
   handleAddToLibrary,
   handleRemoveFromLibrary,
   isInLibrary,
+  handleStartReading,
+  isLibraryPage,
 }) => {
   if (!isOpen) return null;
 
@@ -34,6 +38,8 @@ const RecommendedModals: FC<RecommendedModalsProps> = ({
           onClick={handleAddToLibrary}
           onRemoveClick={handleRemoveFromLibrary}
           isInLibrary={isInLibrary}
+          handleStartReading={handleStartReading}
+          isLibraryPage={isLibraryPage}
         />
       );
     case 'addedToLibrary':

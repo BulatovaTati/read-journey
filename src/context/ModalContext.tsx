@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 type ModalType = keyof ModalDataMap;
 
@@ -22,6 +22,13 @@ interface ModalContextType {
   openModal: <T extends ModalType>(type: T, data?: ModalDataMap[T]) => void;
   closeModal: () => void;
 }
+
+export const isBookInfoModalData = (
+  modalType: ModalType | null,
+  modalData: ModalDataMap[keyof ModalDataMap] | null
+): modalData is ModalDataMap['bookInfo'] => {
+  return modalType === 'bookInfo' && modalData !== null;
+};
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
