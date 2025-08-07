@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 16px;
+  }
+
+  @media (min-width: 1280px) {
+    margin-bottom: 20px;
+  }
+}
+
+.controlls {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  stroke: var(--grayLight-color);
+}
+
+.active {
+  stroke: var(--whitePrimary-color);
+}
+
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+}

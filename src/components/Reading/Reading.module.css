@@ -10,6 +10,7 @@
   @media (min-width: 768px) {
     padding: 40px;
   }
+
   @media (min-width: 1280px) {
     padding: 40px 40px 28px 40px;
     height: 651px;
@@ -31,7 +32,70 @@
 .titleContainer {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 40px;
+
   @media (min-width: 768px) {
+    margin-bottom: 32px;
   }
+
+  @media (min-width: 1280px) {
+    margin-bottom: 44px;
+  }
+}
+
+.image {
+  width: 137px;
+  height: 208px;
+  border-radius: 8px;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    width: 169px;
+    height: 256px;
+  }
+
+  @media (min-width: 1280px) {
+    width: 224px;
+    height: 340px;
+  }
+}
+
+.info {
+  text-align: center;
+}
+
+.bookTitle {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display: inline-block;
+  max-width: 146px;
+  font-weight: 700;
+  text-transform: capitalize;
+
+  @media (min-width: 768px) {
+    margin-top: 25px;
+    max-width: 100%;
+
+    font-size: 20px;
+    line-height: 1;
+  }
+}
+
+.author {
+  margin-bottom: 20px;
+  font-size: 10px;
+  line-height: 1.2;
+
+  @media (min-width: 768px) {
+    margin-bottom: 16px;
+  }
+
+  @media (min-width: 1280px) {
+    margin-bottom: 30px;
+  }
+}
+
+.icon {
+  display: block;
+  margin: 0 auto;
 }

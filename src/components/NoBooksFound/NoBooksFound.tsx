@@ -16,7 +16,7 @@ const NoBooksFound = () => {
       <picture className={s.picture}>
         <source
           srcSet={`${imgBooksMobile1x} 1x, ${imgBooksMobile2x} 2x`}
-          media="(max-width: 767px)"
+          media="(max-width: 767.98px)"
         />
         <source
           srcSet={`${imgBooksDesktop1x} 1x, ${imgBooksDesktop2x} 2x`}
