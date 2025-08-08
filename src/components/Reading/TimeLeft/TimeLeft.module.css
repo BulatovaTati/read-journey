@@ -1,0 +1,6 @@
+.time {
+  font-size: 12px;
+  line-height: 1.33333;
+
+  color: var(--grayLight-color);
+}

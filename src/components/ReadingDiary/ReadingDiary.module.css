@@ -1,0 +1,11 @@
+.readingDairy {
+  height: 211px;
+  padding: 16px;
+  overflow: scroll;
+  border-radius: 12px;
+  background-color: var(--grayBlack-color);
+
+  @media (min-width: 768px) {
+    height: 252px;
+  }
+}

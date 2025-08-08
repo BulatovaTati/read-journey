@@ -17,6 +17,10 @@
   }
 }
 
+.statistic {
+  width: 100%;
+}
+
 .title {
   font-weight: 700;
   font-size: 20px;

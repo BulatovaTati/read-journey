@@ -1,0 +1,9 @@
+.graph {
+  width: 44px;
+  height: 18px;
+
+  @media (min-width: 768px) {
+    width: 59px;
+    height: 25px;
+  }
+}

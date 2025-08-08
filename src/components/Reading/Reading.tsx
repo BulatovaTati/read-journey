@@ -15,6 +15,7 @@ import { RootState } from '../../redux/store';
 import { Book } from '../../redux/books/books-types';
 
 import s from './Reading.module.css';
+import TimeLeft from './TimeLeft/TimeLeft';
 
 interface RouteParams {
   [key: string]: string | undefined;
@@ -43,13 +44,14 @@ const Reading = () => {
       {isLoading && <Loader />}
       <Dashboard>
         <AddReading selectedBook={bookId} onReadChange={setRead} />
-        <div>
+        <div className={s.statistic}>
           {selectCurrentBookInfo.progress?.length !== 0 ? <ReadingDetails /> : <StatisticNone />}
         </div>
       </Dashboard>
       <div className={s.reading}>
         <div className={s.titleContainer}>
           <h1 className={s.title}>My reading</h1>
+          <TimeLeft />
         </div>
         <InfoBlock
           imageUrl={selectCurrentBookInfo.imageUrl}
