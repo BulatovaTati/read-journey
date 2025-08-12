@@ -19,9 +19,7 @@ const ReadingDetails = () => {
     setActiveComponent(component);
   };
 
-  if (!book || !book.progress) {
-    return <Loader />;
-  }
+  if (!book || !book.progress) return <Loader />;
 
   return (
     <>
@@ -32,13 +30,13 @@ const ReadingDetails = () => {
             className={`${s.btn} ${activeComponent === 'progress' ? s.active : ''}`}
             onClick={() => handleButtonClick('progress')}
           >
-            <Icon iconName="icon-hourglass" className={s.icon} width={20} height={20} />
+            <Icon iconName="icon-hourglass" width={20} height={20} />
           </button>
           <button
             className={`${s.btn} ${activeComponent === 'diagram' ? s.active : ''}`}
             onClick={() => handleButtonClick('diagram')}
           >
-            <Icon iconName="icon-pie-chart" className={s.icon} width={20} height={20} />
+            <Icon iconName="icon-pie-chart" width={20} height={20} />
           </button>
         </div>
       </div>

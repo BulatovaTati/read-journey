@@ -1,6 +1,6 @@
 import { FallingLines } from 'react-loader-spinner';
-import s from './Loader.module.css';
 import clsx from 'clsx';
+import s from './Loader.module.css';
 
 interface LoaderProps {
   modClass?: string;

@@ -14,6 +14,7 @@ import { addBookById, deleteBook } from '../../redux/books/operations';
 import { selectOwnBooks } from '../../redux/books/selectors';
 
 import s from './RecommendedList.module.css';
+import LocalLoader from '../Loader/LocalLoader';
 
 interface RecommendedListProps {
   results: Book[];
@@ -28,13 +29,7 @@ const RecommendedList: FC<RecommendedListProps> = ({ results, isLoading }) => {
   const isLibraryPage = pathname.includes('library');
   const ownLibrary = useSelector(selectOwnBooks);
 
-  if (isLoading) {
-    return (
-      <div className={s.listContainer}>
-        <Loader modClass={s.listLoader} />
-      </div>
-    );
-  }
+  if (isLoading) return <LocalLoader />;
 
   if (!results || results.length === 0) {
     return <NoBooksFound />;

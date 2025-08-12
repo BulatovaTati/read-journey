@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { selectInfoCurrentBook } from '../../redux/books/selectors';
-import Loader from '../Loader/Loader';
 import HowMuchWasRead from '../Reading/HowMuchWasRead/HowMuchWasRead';
 import { Book } from '../../redux/books/books-types';
 import s from './ReadingDiary.module.css';
+import DiaryLoader from './DiaryLoader';
 
 const ReadingDiary = () => {
   const { progress = [], totalPages = 0 } = useSelector(selectInfoCurrentBook) ?? ({} as Book);
@@ -55,55 +55,58 @@ const ReadingDiary = () => {
 
   return (
     <div className={s.readingDairy}>
-      <ul>
-        {Object.entries(groupedByDateWithTotalPages).map(([date, data]: [string, any]) => {
+      <ul className={s.readingList}>
+        {Object.entries(groupedByDateWithTotalPages).map(([date, data]: [string, any], index) => {
           const isActive = data.readings.some((item: any) => item.status === 'active');
-
-          if (isActive && data.readings.length === 1) {
-            return (
-              <div key={date}>
-                <p>You started reading...</p>
-                {/* <Loader /> */}
-              </div>
-            );
-          }
-
+          const isLatest = index === 0;
           return (
-            <li key={`${date}-${totalPages}`}>
-              <div className={isActive ? `${s.title} ${s.active}` : s.title}>
-                <h5>{date}</h5>
-                <p className={s.pages}>{data.pages + 1} pages</p>
-              </div>
-              <ul>
-                {data.readings
-                  .filter((item: any) => item.status !== 'active')
-                  .map(
-                    ({
-                      startReading,
-                      finishReading,
-                      startPage,
-                      finishPage,
-                      _id,
-                    }: {
-                      startReading: any;
-                      finishReading: any;
-                      startPage: number;
-                      finishPage: number;
-                      _id: string;
-                    }) => (
-                      <HowMuchWasRead
-                        key={`${startReading}-${finishReading}`}
-                        timeReading={differenceInMinutes(
+            <li key={`${date}-${totalPages}`} className={isLatest ? s.latest : ''}>
+              {isActive && data.readings.length === 1 ? (
+                <p className={`${s.readingStarted} ${isLatest ? s.latest : ''}`}>
+                  Reading started......
+                </p>
+              ) : (
+                <>
+                  <div
+                    className={`${s.titleContainer} ${isActive ? s.active : ''} ${
+                      isLatest ? s.latest : ''
+                    }`}
+                  >
+                    <p className={s.date}>{date}</p>
+                    <p className={s.pages}>{data.pages + 1} pages</p>
+                  </div>
+                  <ul className={s.readingStats}>
+                    {data.readings
+                      .filter((item: any) => item.status !== 'active')
+                      .map(
+                        ({
                           startReading,
                           finishReading,
                           startPage,
                           finishPage,
-                          _id
-                        )}
-                      />
-                    )
-                  )}
-              </ul>
+                          _id,
+                        }: {
+                          startReading: any;
+                          finishReading: any;
+                          startPage: number;
+                          finishPage: number;
+                          _id: string;
+                        }) => (
+                          <HowMuchWasRead
+                            key={`${startReading}-${finishReading}`}
+                            timeReading={differenceInMinutes(
+                              startReading,
+                              finishReading,
+                              startPage,
+                              finishPage,
+                              _id
+                            )}
+                          />
+                        )
+                      )}
+                  </ul>
+                </>
+              )}
             </li>
           );
         })}

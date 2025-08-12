@@ -15,3 +15,23 @@
   width: 100px;
   height: 100px;
 }
+
+.listContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 248px;
+
+  @media (min-width: 768px) {
+    height: 523px;
+  }
+}
+
+.listLoader {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

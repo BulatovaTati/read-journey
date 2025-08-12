@@ -1,9 +1,52 @@
 .graph {
   width: 44px;
   height: 18px;
+  margin-bottom: 7px;
 
   @media (min-width: 768px) {
     width: 59px;
     height: 25px;
   }
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.itemContainer {
+  padding-left: 25px;
+}
+
+.percent {
+  margin-bottom: 4px;
+}
+
+.minutes,
+.perHour {
+  display: block;
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--grayLight-color);
+}
+
+.graphContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.btn {
+  background-color: transparent;
+}
+
+.trash {
+  width: 14px;
+  height: 14px;
+}
+
+.perHour {
+  width: 44px;
+  height: 18px;
 }

@@ -36,18 +36,18 @@ const HowMuchWasRead: FC<HowMuchWasReadProps> = ({ timeReading }) => {
     <Loader />
   ) : (
     <li className={s.item} key={timeReading.readId}>
-      <div>
-        <p>{timeReading.percent}%</p>
-        <span>{timeReading.minutes} minutes</span>
+      <div className={s.itemContainer}>
+        <p className={s.percent}>{timeReading.percent}%</p>
+        <span className={s.minutes}>{timeReading.minutes} minutes</span>
       </div>
       <div>
-        <div>
+        <div className={s.graphContainer}>
           <Icon iconName="icon-block" className={s.graph} />
-          <button onClick={handleDelete}>
-            <RiDeleteBin5Line />
+          <button onClick={handleDelete} className={s.btn}>
+            <Icon iconName="icon-trash" className={s.trash} />
           </button>
         </div>
-        <span>{timeReading.pages + 1} pages per hour</span>
+        <span className={s.perHour}>{timeReading.pages + 1} pages per hour</span>
       </div>
     </li>
   );

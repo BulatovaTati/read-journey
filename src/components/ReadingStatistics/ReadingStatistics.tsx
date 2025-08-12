@@ -16,8 +16,8 @@ const ReadingStatistics = () => {
       .map((reading: any) => reading.finishPage)
   );
 
-  const readBookPercent: any = ((maxPage / totalPages) * 100).toFixed(2);
-  const percentUnread: any = 100 - readBookPercent;
+  const readBookPercent = totalPages > 0 ? ((maxPage / totalPages) * 100).toFixed(2) : '0';
+  const percentUnread = (100 - Number(readBookPercent)).toFixed(2);
 
   const data = {
     labels: ['Read', 'Unread'],
@@ -42,13 +42,12 @@ const ReadingStatistics = () => {
 
   return (
     <div className={s.statistic}>
-      {maxPage > 0 ? (
+      {maxPage > 0 && totalPages > 0 ? (
         <>
           <div className={s.chartContainer}>
             <Pie data={data} options={options} />
-            <div className={s.centerInfo}>{readBookPercent}%</div>
+            <span className={s.centerInfo}>{readBookPercent}%</span>
           </div>
-
           <div className={s.pagesContainer}>
             <div>
               <p className={s.percent}>{readBookPercent}%</p>
@@ -57,7 +56,7 @@ const ReadingStatistics = () => {
           </div>
         </>
       ) : (
-        <Loader />
+        <p className={s.noStatistic}>No statistic yet</p>
       )}
     </div>
   );
