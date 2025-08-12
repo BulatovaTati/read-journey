@@ -7,6 +7,9 @@ import { selectInfoCurrentBook, selectReadBook } from '../../redux/books/selecto
 import { fetchBookDetails, readingStart, readingStop } from '../../redux/books/operations';
 import { addReadingSchema } from '../../validations/addReadingValidation';
 import s from './AddReading.module.css';
+import { ReadingRecord } from '../../redux/books/books-types';
+import { useModalContext } from '../../context/ModalContext';
+import IsReadBookModal from '../Modals/IsReadBookModal/IsReadBookModal';
 
 interface AddReadingProps {
   selectedBook: string | undefined;
@@ -20,6 +23,7 @@ interface FormValues {
 const AddReading: FC<AddReadingProps> = ({ selectedBook, onReadChange }) => {
   const dispatch = useAppDispatch();
   const infoAboutBook = useSelector(selectInfoCurrentBook);
+  const { openModal, modalType, isOpen, closeModal } = useModalContext();
   const readBook = useSelector(selectReadBook);
   const [read, setRead] = useState<boolean>(false);
   const [pageError, setPageError] = useState<string>('');
@@ -68,9 +72,13 @@ const AddReading: FC<AddReadingProps> = ({ selectedBook, onReadChange }) => {
       dispatch(readingStop(requestData));
       setRead(false);
       onReadChange(false);
-    }
 
-    reset();
+      if (pageNumber === infoAboutBook.totalPages) {
+        openModal('readBook');
+      }
+
+      setValue('page', String(pageNumber));
+    }
   };
 
   return (
@@ -85,25 +93,13 @@ const AddReading: FC<AddReadingProps> = ({ selectedBook, onReadChange }) => {
           </div>
           <input
             id="page"
-            type="text"
-            placeholder="0"
+            type="number"
+            min="1"
+            max={infoAboutBook?.totalPages || undefined}
             className={`${s.input} ${errors.page || pageError ? s.inputError : ''}`}
             {...register('page')}
-            onChange={e => {
-              const value = e.target.value;
-              setValue('page', value);
-              if (
-                infoAboutBook &&
-                parseInt(value, 10) > infoAboutBook.totalPages &&
-                !isNaN(parseInt(value, 10)) &&
-                value !== ''
-              ) {
-                setPageError(`Page number must not exceed ${infoAboutBook.totalPages}`);
-              } else {
-                setPageError('');
-              }
-            }}
           />
+
           {errors.page && <p className={s.error}>{errors.page.message}</p>}
           {pageError && <p className={s.error}>{pageError}</p>}
         </div>
@@ -111,6 +107,7 @@ const AddReading: FC<AddReadingProps> = ({ selectedBook, onReadChange }) => {
           {read ? 'To stop' : 'To start'}
         </button>
       </form>
+      {modalType === 'readBook' && <IsReadBookModal isOpen={isOpen} onClose={closeModal} />}
     </div>
   );
 };

@@ -13,6 +13,7 @@ type ModalDataMap = {
   addedToLibrary: undefined;
   errorToLibrary: undefined;
   startTraining: undefined;
+  readBook: undefined;
 };
 
 interface ModalContextType {

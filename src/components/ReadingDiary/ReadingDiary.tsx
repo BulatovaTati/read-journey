@@ -62,9 +62,14 @@ const ReadingDiary = () => {
           return (
             <li key={`${date}-${totalPages}`} className={isLatest ? s.latest : ''}>
               {isActive && data.readings.length === 1 ? (
-                <p className={`${s.readingStarted} ${isLatest ? s.latest : ''}`}>
-                  Reading started......
-                </p>
+                <div
+                  className={`${s.titleContainer} ${isActive ? s.active : ''} ${
+                    isLatest ? s.latest : ''
+                  }`}
+                >
+                  <p className={s.date}>Reading started</p>
+                  <p className={s.pages}>......</p>
+                </div>
               ) : (
                 <>
                   <div

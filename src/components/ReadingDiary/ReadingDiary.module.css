@@ -36,10 +36,9 @@
   display: flex;
   flex-direction: column;
   gap: 17px;
+  padding: 16px;
   border-radius: 12px;
   background-color: var(--grayBlack-color);
-
-  padding: 16px;
 
   &::before {
     content: '';
@@ -75,7 +74,6 @@
   margin-bottom: 16px;
 }
 
-.readingStarted::before,
 .pages::before {
   content: '';
   position: absolute;
@@ -89,9 +87,7 @@
   border-radius: 4px;
 }
 
-.latest.readingStarted::before,
 .latest.pages::before,
-.latest .readingStarted::before,
 .latest .pages::before {
   background-color: var(--blackBackground-color);
   border-color: var(--whitePrimary-color);
