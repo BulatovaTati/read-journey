@@ -1,64 +1,24 @@
-import { useSelector } from 'react-redux';
-import { selectInfoCurrentBook } from '../../redux/books/selectors';
 import HowMuchWasRead from '../Reading/HowMuchWasRead/HowMuchWasRead';
+
+import { selectInfoCurrentBook } from '../../redux/books/selectors';
 import { Book } from '../../redux/books/books-types';
+import { useAppSelector } from '../../redux/hooks';
+
 import s from './ReadingDiary.module.css';
-import DiaryLoader from './DiaryLoader';
+import { calculatePages, differenceInMinutes, groupReadingsByDate } from '../../helpers/reading';
 
 const ReadingDiary = () => {
-  const { progress = [], totalPages = 0 } = useSelector(selectInfoCurrentBook) ?? ({} as Book);
-  const groupedByDateWithTotalPages = progress.reduceRight((acc: any, curr: any) => {
-    const finishDate = new Date(curr.startReading).toLocaleDateString();
-
-    if (!acc[finishDate]) {
-      acc[finishDate] = [];
-    }
-
-    acc[finishDate].push(curr);
-    return acc;
-  }, {});
-
-  for (const date in groupedByDateWithTotalPages) {
-    const readings = groupedByDateWithTotalPages[date];
-    const minStartPage = Math.min(
-      ...readings
-        .filter((item: any) => item.status !== 'active')
-        .map((reading: any) => reading.startPage)
-    );
-    const maxFinishPage = Math.max(
-      ...readings
-        .filter((item: any) => item.status !== 'active')
-        .map((reading: any) => reading.finishPage)
-    );
-    const pages = maxFinishPage - minStartPage;
-    groupedByDateWithTotalPages[date] = { date, pages, readings };
-  }
-
-  function differenceInMinutes(
-    startReading: any,
-    finishReading: any,
-    startPage: number,
-    finishPage: number,
-    _id: string
-  ) {
-    const startR = new Date(startReading);
-    const finishR = new Date(finishReading);
-
-    const differenceInMilliseconds = finishR.getTime() - startR.getTime();
-    const minutes = Math.floor(differenceInMilliseconds / (1000 * 60));
-
-    const readingPages = finishPage - startPage;
-    const percent = Number(((readingPages / totalPages) * 100).toFixed(2));
-
-    return { minutes, pages: readingPages, percent, readId: _id };
-  }
+  const { progress = [], totalPages = 0 } = useAppSelector(selectInfoCurrentBook) ?? ({} as Book);
+  const grouped = groupReadingsByDate(progress);
 
   return (
     <div className={s.readingDairy}>
       <ul className={s.readingList}>
-        {Object.entries(groupedByDateWithTotalPages).map(([date, data]: [string, any], index) => {
-          const isActive = data.readings.some((item: any) => item.status === 'active');
+        {Object.entries(grouped).map(([date, data], index) => {
+          const isActive = data.readings.some(r => r.status === 'active');
           const isLatest = index === 0;
+          const pages = calculatePages(data.readings);
+
           return (
             <li key={`${date}-${totalPages}`} className={isLatest ? s.latest : ''}>
               {isActive && data.readings.length === 1 ? (
@@ -67,7 +27,7 @@ const ReadingDiary = () => {
                     isLatest ? s.latest : ''
                   }`}
                 >
-                  <p className={s.date}>Reading started</p>
+                  <p className={s.date}> Reading started </p>
                   <p className={s.pages}>......</p>
                 </div>
               ) : (
@@ -78,37 +38,24 @@ const ReadingDiary = () => {
                     }`}
                   >
                     <p className={s.date}>{date}</p>
-                    <p className={s.pages}>{data.pages + 1} pages</p>
+                    <p className={s.pages}>{pages + 1} pages</p>
                   </div>
                   <ul className={s.readingStats}>
                     {data.readings
-                      .filter((item: any) => item.status !== 'active')
-                      .map(
-                        ({
-                          startReading,
-                          finishReading,
-                          startPage,
-                          finishPage,
-                          _id,
-                        }: {
-                          startReading: any;
-                          finishReading: any;
-                          startPage: number;
-                          finishPage: number;
-                          _id: string;
-                        }) => (
-                          <HowMuchWasRead
-                            key={`${startReading}-${finishReading}`}
-                            timeReading={differenceInMinutes(
-                              startReading,
-                              finishReading,
-                              startPage,
-                              finishPage,
-                              _id
-                            )}
-                          />
-                        )
-                      )}
+                      .filter(r => r.status !== 'active')
+                      .map(r => (
+                        <HowMuchWasRead
+                          key={`${r.startReading}-${r.finishReading ?? ''}`}
+                          timeReading={differenceInMinutes(
+                            r.startReading,
+                            r.finishReading,
+                            r.startPage,
+                            r.finishPage,
+                            totalPages,
+                            r._id
+                          )}
+                        />
+                      ))}
                   </ul>
                 </>
               )}

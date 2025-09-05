@@ -1,5 +1,5 @@
-import { FallingLines } from 'react-loader-spinner';
 import clsx from 'clsx';
+import { FallingLines } from 'react-loader-spinner';
 import s from './Loader.module.css';
 
 interface LoaderProps {

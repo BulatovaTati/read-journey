@@ -6,7 +6,7 @@ interface PrivateRouteProps {
   component: ReactElement;
 }
 
-const PrivateRoute = ({ component: Component }: PrivateRouteProps): ReactElement => {
+const PrivateRoute = ({ component: Component }: PrivateRouteProps) => {
   const location = useLocation();
   const { isLoggedIn } = useAuth();
 

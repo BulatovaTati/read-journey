@@ -1,6 +1,5 @@
 import notFoundImg2x from '/images/desktop-default-image@2x.jpg';
 import s from './RecommendedList.module.css';
-import { FC } from 'react';
 
 interface BookImageProps {
   imageSrc: string;
@@ -8,7 +7,7 @@ interface BookImageProps {
   handleImageClick: () => void;
 }
 
-const BookImage: FC<BookImageProps> = ({ imageSrc, title, handleImageClick }) => {
+const BookImage = ({ imageSrc, title, handleImageClick }: BookImageProps) => {
   return (
     <img
       src={imageSrc}

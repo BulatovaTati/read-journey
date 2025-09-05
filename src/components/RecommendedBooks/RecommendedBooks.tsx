@@ -1,5 +1,4 @@
-import { FC, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import RecommendedBooksList from '../RecommendedBooksList/RecommendedBooksList';
@@ -7,16 +6,14 @@ import Pagination from '../Pagination/Pagination';
 import Icon from '../Icon/Icon';
 
 import { fetchRecommendedBooks } from '../../redux/books/operations';
-import { useAppDispatch } from '../../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectBookData, selectTotalPages } from '../../redux/books/selectors';
-
-import { Book } from '../../redux/books/books-types';
 
 import s from './RecommendedBooks.module.css';
 
-const RecommendedBooks: FC = () => {
-  const results = useSelector(selectBookData) as Book[];
-  const totalPages = useSelector(selectTotalPages) as number;
+const RecommendedBooks = () => {
+  const results = useAppSelector(selectBookData);
+  const totalPages = useAppSelector(selectTotalPages) as number;
   const dispatch = useAppDispatch();
   const [page, setPage] = useState<number>(1);
 

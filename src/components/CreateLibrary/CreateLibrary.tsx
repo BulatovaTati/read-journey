@@ -1,15 +1,14 @@
 import { useEffect } from 'react';
 import { FieldErrors, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 
 import { selectOwnBooks } from '../../redux/books/selectors';
 import { addNewBook, fetchOwnBooks } from '../../redux/books/operations';
+import { useModalContext } from '../../context/ModalContext';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { schemaCreateLibrary } from '../../validations/createOwnLibraryValidation';
-import { useAppDispatch } from '../../redux/hooks';
-import { useModalContext } from '../../context/ModalContext';
 
 import s from '../Filter/Filter.module.css';
 
@@ -19,15 +18,9 @@ interface BookFormInputs {
   page: number;
 }
 
-interface Book {
-  title: string;
-  author: string;
-  totalPages: number;
-}
-
 const CreateLibrary = () => {
   const dispatch = useAppDispatch();
-  const ownLibrary = useSelector(selectOwnBooks) as Book[];
+  const ownLibrary = useAppSelector(selectOwnBooks);
   const { openModal } = useModalContext();
 
   const {

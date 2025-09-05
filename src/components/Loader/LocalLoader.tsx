@@ -1,6 +1,5 @@
-import Loader from './Loader';
 import clsx from 'clsx';
-
+import Loader from './Loader';
 import s from './Loader.module.css';
 
 interface LoaderProps {

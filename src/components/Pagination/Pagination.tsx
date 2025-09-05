@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import clsx from 'clsx';
 import Icon from '../Icon/Icon';
 import s from './Pagination.module.css';
@@ -9,7 +8,7 @@ interface PaginationProps {
   page: number;
 }
 
-const Pagination: FC<PaginationProps> = ({ totalPages, handlePageChange, page }) => {
+const Pagination = ({ totalPages, handlePageChange, page }: PaginationProps) => {
   return (
     <div className={s.container}>
       <button

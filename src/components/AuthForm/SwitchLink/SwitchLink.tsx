@@ -1,12 +1,11 @@
-import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import s from './SwitchLink.module.css';
 import { SwitchLinkProps } from '../auth-types';
+import s from './SwitchLink.module.css';
 
-const SwitchLink: FC<SwitchLinkProps> = ({ isLoginPage }) => {
+const SwitchLink = ({ isLoginPage }: SwitchLinkProps) => {
   return isLoginPage ? (
     <NavLink to="/register" className={s.linkLogin}>
-      Don’t have an account?
+      Don't have an account?
     </NavLink>
   ) : (
     <NavLink to="/login" className={s.linkLogin}>

@@ -1,6 +1,10 @@
-export interface ProgressEntry {
-  page: number;
-  date: string;
+export interface ReadingProgress {
+  _id: string;
+  startReading: string;
+  finishReading?: string;
+  startPage: number;
+  finishPage?: number;
+  status: 'active' | 'inactive';
 }
 
 export interface TimeLeftToRead {
@@ -17,15 +21,15 @@ export interface Book {
   totalPages: number;
   status?: 'unread' | 'in-progress' | 'done';
   owner?: string;
-  progress?: ProgressEntry[];
+  progress?: ReadingProgress[];
   timeLeftToRead?: TimeLeftToRead;
 }
 
 export interface ReadingRecord {
-  id: string;
-  bookId: string;
+  _id: string;
   startDate: string;
   endDate?: string;
+  page: number;
   progressPages: number;
 }
 

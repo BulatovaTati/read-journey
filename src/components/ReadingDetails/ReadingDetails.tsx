@@ -1,23 +1,22 @@
-import ReadingDiary from '../ReadingDiary/ReadingDiary';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
-import { selectInfoCurrentBook } from '../../redux/books/selectors';
+import ReadingDiary from '../ReadingDiary/ReadingDiary';
+import ReadingStatistics from '../ReadingStatistics/ReadingStatistics';
 import Loader from '../Loader/Loader';
 import Icon from '../Icon/Icon';
-import ReadingStatistics from '../ReadingStatistics/ReadingStatistics';
-import { Book } from '../../redux/books/books-types';
+
+import { selectInfoCurrentBook } from '../../redux/books/selectors';
+import { useAppSelector } from '../../redux/hooks';
+
 import s from './ReadingDetails.module.css';
 
 type TabType = 'progress' | 'diagram';
 
 const ReadingDetails = () => {
-  const book: Book | null = useSelector(selectInfoCurrentBook);
+  const book = useAppSelector(selectInfoCurrentBook);
   const [activeComponent, setActiveComponent] = useState<TabType>('progress');
 
-  const handleButtonClick = (component: TabType) => {
-    setActiveComponent(component);
-  };
+  const handleButtonClick = (component: TabType) => setActiveComponent(component);
 
   if (!book || !book.progress) return <Loader />;
 

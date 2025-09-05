@@ -81,6 +81,7 @@ export const readingStart = createAsyncThunk<
 >('books/reading/start', async (book, { rejectWithValue }) => {
   try {
     const { data } = await axios.post<ReadingRecord>(`/books/reading/start`, book);
+
     return data;
   } catch (error: any) {
     return rejectWithValue(error.message);
@@ -109,6 +110,7 @@ export const deleteReadingRecord = createAsyncThunk<
     const { data } = await axios.delete<ReadingRecord[]>(
       `/books/reading?bookId=${book.bookId}&readingId=${book.readingId}`
     );
+
     return data;
   } catch (error: any) {
     return rejectWithValue(error.message);

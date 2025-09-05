@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import mobBooks from '/images/book-mobile.png';
 import mobBooks2x from '/images/book-mobile@2x.png';
 import books from '/images/book-desktop.png';
@@ -12,7 +11,7 @@ type IsReadBookModalProps = {
   onClose: () => void;
 };
 
-const IsReadBookModal: FC<IsReadBookModalProps> = ({ isOpen, onClose }) => {
+const IsReadBookModal = ({ isOpen, onClose }: IsReadBookModalProps) => {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
       <picture>
@@ -28,4 +27,5 @@ const IsReadBookModal: FC<IsReadBookModalProps> = ({ isOpen, onClose }) => {
     </ModalWrapper>
   );
 };
+
 export default IsReadBookModal;

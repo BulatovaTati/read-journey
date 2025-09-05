@@ -6,7 +6,7 @@ interface RestrictedRouteProps {
   component: ReactElement;
 }
 
-const RestrictedRoute = ({ component: Component }: RestrictedRouteProps): ReactElement => {
+const RestrictedRoute = ({ component: Component }: RestrictedRouteProps) => {
   const location = useLocation();
   const { isLoggedIn } = useAuth();
 

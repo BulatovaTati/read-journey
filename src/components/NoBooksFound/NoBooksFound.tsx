@@ -20,7 +20,7 @@ const NoBooksFound = () => {
         />
         <source
           srcSet={`${imgBooksDesktop1x} 1x, ${imgBooksDesktop2x} 2x`}
-          media="(min-width: 766px)"
+          media="(min-width: 768px)"
         />
         <img className={s.image} src={imgBooksDesktop1x} alt="stack books" loading="lazy" />
       </picture>

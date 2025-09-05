@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import ModalAddToLibrary from '../ModalAddToLibrary/ModalAddToLibrary';
 import SuccessModal from '../SuccessModal/SuccessModal';
 import ErrorModal from '../ErrorModal/ErrorModal';
@@ -15,7 +14,7 @@ interface RecommendedModalsProps {
   isLibraryPage: boolean;
 }
 
-const RecommendedModals: FC<RecommendedModalsProps> = ({
+const RecommendedModals = ({
   isOpen,
   modalType,
   modalData,
@@ -25,7 +24,7 @@ const RecommendedModals: FC<RecommendedModalsProps> = ({
   isInLibrary,
   handleStartReading,
   isLibraryPage,
-}) => {
+}: RecommendedModalsProps) => {
   if (!isOpen) return null;
 
   switch (modalType) {

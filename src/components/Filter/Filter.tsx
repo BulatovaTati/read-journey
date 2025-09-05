@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useAppDispatch } from '../../redux/hooks';
@@ -12,7 +11,7 @@ interface FiltersFormInputs {
   author?: string;
 }
 
-const Filters: FC = () => {
+const Filters = () => {
   const dispatch = useAppDispatch();
   const { isMobile, isTablet } = useMedia();
   const limit = isMobile ? 2 : isTablet ? 8 : 10;

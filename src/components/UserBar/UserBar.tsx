@@ -1,19 +1,18 @@
-import { FC } from 'react';
-import { useSelector } from 'react-redux';
+import LogoutButton from '../LogoutButton/LogoutButton';
+import Icon from '../Icon/Icon';
 
 import { selectUserName } from '../../redux/auth/selectors';
 import useMedia from '../../hooks/useMedia';
-import LogoutButton from '../LogoutButton/LogoutButton';
+import { useAppSelector } from '../../redux/hooks';
 
 import s from './UserBar.module.css';
-import Icon from '../Icon/Icon';
 
 interface UserBarProps {
   onMenuClick?: () => void;
 }
 
-const UserBar: FC<UserBarProps> = ({ onMenuClick }) => {
-  const name = useSelector(selectUserName);
+const UserBar = ({ onMenuClick }: UserBarProps) => {
+  const name = useAppSelector(selectUserName);
   const { isMobile } = useMedia();
 
   const firstLetterAvatar = name?.slice(0, 1).toUpperCase();

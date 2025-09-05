@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import likeDesktop2x from '/images/like-desktop@2x.png';
 import likeDesktop from '/images/like-desktop.png';
 import likeMobile2x from '/images/like-mobile@2x.png';
@@ -12,7 +11,7 @@ type SuccessModalProps = {
   onClose: () => void;
 };
 
-const SuccessModal: FC<SuccessModalProps> = ({ isOpen, onClose }) => {
+const SuccessModal = ({ isOpen, onClose }: SuccessModalProps) => {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
       <picture>
@@ -28,4 +27,5 @@ const SuccessModal: FC<SuccessModalProps> = ({ isOpen, onClose }) => {
     </ModalWrapper>
   );
 };
+
 export default SuccessModal;

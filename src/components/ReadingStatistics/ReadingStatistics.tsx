@@ -1,14 +1,16 @@
-import { useSelector } from 'react-redux';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Legend } from 'chart.js';
+
 import { selectInfoCurrentBook } from '../../redux/books/selectors';
-import Loader from '../Loader/Loader';
-import s from './ReadingStatistics.module.css';
 import { Book } from '../../redux/books/books-types';
+import { useAppSelector } from '../../redux/hooks';
+
+import s from './ReadingStatistics.module.css';
+
 ChartJS.register(ArcElement, Legend);
 
 const ReadingStatistics = () => {
-  const { progress = [], totalPages = 0 } = useSelector(selectInfoCurrentBook) ?? ({} as Book);
+  const { progress = [], totalPages = 0 } = useAppSelector(selectInfoCurrentBook) ?? ({} as Book);
 
   const maxPage = Math.max(
     ...progress

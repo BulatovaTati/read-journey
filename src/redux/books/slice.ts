@@ -60,7 +60,15 @@ const bookSlice = createSlice({
       })
       .addCase(readingStop.fulfilled, (state, action: PayloadAction<ReadingRecord>) => {
         state.isLoading = false;
-        state.readBook.push(action.payload);
+        state.readBook = state.readBook.map(record =>
+          record._id === action.payload._id
+            ? {
+                ...record,
+                progressPages: action.payload.progressPages,
+                endDate: action.payload.endDate,
+              }
+            : record
+        );
       })
       .addCase(deleteReadingRecord.fulfilled, (state, action: PayloadAction<ReadingRecord[]>) => {
         state.isLoading = false;

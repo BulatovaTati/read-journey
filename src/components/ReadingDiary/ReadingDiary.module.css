@@ -3,6 +3,9 @@
   padding-right: 7px;
   overflow-y: auto;
 
+  background-color: var(--grayBlack-color);
+  border-radius: 12px;
+
   @media (min-width: 768px) {
     height: 252px;
   }

@@ -1,10 +1,8 @@
-import { FC } from 'react';
-import { Book } from '../../redux/books/books-types';
 import notFoundImg2x from '/images/desktop-default-image@2x.jpg';
-
 import BookImage from './BookImage';
 import DeleteBtn from './DeleteBtn';
 
+import { Book } from '../../redux/books/books-types';
 import s from './RecommendedList.module.css';
 
 interface RecommendedItemProps {
@@ -14,12 +12,7 @@ interface RecommendedItemProps {
   onDelete: (bookId: string) => void;
 }
 
-const RecommendedItem: FC<RecommendedItemProps> = ({
-  book,
-  isLibraryPage,
-  onImageClick,
-  onDelete,
-}) => {
+const RecommendedItem = ({ book, isLibraryPage, onImageClick, onDelete }: RecommendedItemProps) => {
   const imageSrc = book.imageUrl || notFoundImg2x;
 
   return (

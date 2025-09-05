@@ -1,12 +1,14 @@
-import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { RiDeleteBin5Line } from 'react-icons/ri';
+import toast from 'react-hot-toast';
+
 import Loader from '../../Loader/Loader';
+import Icon from '../../Icon/Icon';
+
 import { deleteReadingRecord, fetchBookDetails } from '../../../redux/books/operations';
 import { useAppDispatch } from '../../../redux/hooks';
 import { selectIsLoading } from '../../../redux/books/selectors';
-import Icon from '../../Icon/Icon';
+
 import s from './HowMuchWasRead.module.css';
 
 interface HowMuchWasReadProps {
@@ -18,23 +20,32 @@ interface HowMuchWasReadProps {
   };
 }
 
-const HowMuchWasRead: FC<HowMuchWasReadProps> = ({ timeReading }) => {
+const HowMuchWasRead = ({ timeReading }: HowMuchWasReadProps) => {
   const dispatch = useAppDispatch();
-  const { bookId } = useParams<{ bookId: string }>();
   const isLoading = useSelector(selectIsLoading);
+  const { bookId } = useParams<{ bookId: string }>();
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (!bookId) return;
 
-    dispatch(deleteReadingRecord({ bookId, readingId: timeReading.readId }))
-      .unwrap()
-      .then(() => dispatch(fetchBookDetails(bookId)))
-      .catch(error => console.error('Error deleting:', error));
+    try {
+      dispatch(deleteReadingRecord({ bookId, readingId: timeReading.readId })).unwrap();
+      dispatch(fetchBookDetails(bookId));
+    } catch (err: unknown) {
+      const error = err as { message?: string } | string;
+      const message = typeof error === 'string' ? error : error?.message || 'Error deleting record';
+
+      if (message.includes("haven't finished reading") || message.includes('409')) {
+        toast.error('You can delete this record only after finishing the book.');
+      } else {
+        toast.error(message);
+      }
+    }
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  if (isLoading) return <Loader />;
+
+  return (
     <li className={s.item} key={timeReading.readId}>
       <div className={s.itemContainer}>
         <p className={s.percent}>{timeReading.percent}%</p>

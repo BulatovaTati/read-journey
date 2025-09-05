@@ -1,6 +1,5 @@
-import { FC } from 'react';
-import Icon from '../Icon/Icon';
-import s from './Reading.module.css';
+import Icon from '../../Icon/Icon';
+import s from '../Reading.module.css';
 
 interface InfoBlockProps {
   imageUrl: string;
@@ -9,7 +8,7 @@ interface InfoBlockProps {
   isRead: boolean;
 }
 
-const InfoBlock: FC<InfoBlockProps> = ({ imageUrl, title, author, isRead }) => {
+const InfoBlock = ({ imageUrl, title, author, isRead }: InfoBlockProps) => {
   return (
     <div className={s.info}>
       <img src={imageUrl} className={s.image} />

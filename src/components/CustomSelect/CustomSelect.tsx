@@ -1,13 +1,14 @@
 import Select, { SingleValue } from 'react-select';
+
 import { useAppDispatch } from '../../redux/hooks';
 import { useSelector } from 'react-redux';
 import { selectFilter } from '../../redux/books/selectors';
 import { saveFilter } from '../../redux/books/slice';
 import { fetchOwnBooks } from '../../redux/books/operations';
+import { FilterOption } from '../../redux/books/books-types';
 
 import { customStyles } from './customStyles';
 import s from './CustomSelect.module.css';
-import { FilterOption } from '../../redux/books/books-types';
 
 const options: FilterOption[] = [
   { value: 'unread', label: 'Unread' },

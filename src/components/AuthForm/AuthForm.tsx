@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -18,13 +18,11 @@ import { Credentials } from '../../redux/auth/auth-types';
 import { AuthFormData } from './auth-types';
 
 import s from './AuthForm.module.css';
-import useMedia from '../../hooks/useMedia';
 
-const AuthForm: FC = () => {
+const AuthForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const { isTablet } = useMedia();
   const isLoginPage = location.pathname === '/login';
 
   const formSchema = isLoginPage ? loginSchema : registerSchema;

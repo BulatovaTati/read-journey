@@ -1,15 +1,16 @@
-import { FC, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useAppDispatch } from '../../redux/hooks';
+import toast from 'react-hot-toast';
+
+import IsReadBookModal from '../Modals/IsReadBookModal/IsReadBookModal';
 import { selectInfoCurrentBook, selectReadBook } from '../../redux/books/selectors';
 import { fetchBookDetails, readingStart, readingStop } from '../../redux/books/operations';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { addReadingSchema } from '../../validations/addReadingValidation';
-import s from './AddReading.module.css';
-import { ReadingRecord } from '../../redux/books/books-types';
 import { useModalContext } from '../../context/ModalContext';
-import IsReadBookModal from '../Modals/IsReadBookModal/IsReadBookModal';
+
+import s from './AddReading.module.css';
 
 interface AddReadingProps {
   selectedBook: string | undefined;
@@ -20,19 +21,18 @@ interface FormValues {
   page: string;
 }
 
-const AddReading: FC<AddReadingProps> = ({ selectedBook, onReadChange }) => {
+const AddReading = ({ selectedBook, onReadChange }: AddReadingProps) => {
   const dispatch = useAppDispatch();
-  const infoAboutBook = useSelector(selectInfoCurrentBook);
+  const infoAboutBook = useAppSelector(selectInfoCurrentBook);
+  const readBook = useAppSelector(selectReadBook);
   const { openModal, modalType, isOpen, closeModal } = useModalContext();
-  const readBook = useSelector(selectReadBook);
-  const [read, setRead] = useState<boolean>(false);
   const [pageError, setPageError] = useState<string>('');
+  const isReading = infoAboutBook?.progress?.some(p => p.status === 'active');
 
   const {
     register,
     handleSubmit,
     setValue,
-    reset,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(addReadingSchema),
@@ -48,9 +48,9 @@ const AddReading: FC<AddReadingProps> = ({ selectedBook, onReadChange }) => {
   }, [selectedBook, dispatch, readBook]);
 
   const onSubmit: SubmitHandler<FormValues> = data => {
-    const pageNumber = parseInt(data.page, 10);
+    if (!infoAboutBook || !selectedBook) return;
 
-    if (!infoAboutBook) return;
+    const pageNumber = parseInt(data.page, 10);
 
     if (pageNumber > infoAboutBook.totalPages) {
       setPageError(`Page number must not exceed ${infoAboutBook.totalPages}`);
@@ -59,31 +59,52 @@ const AddReading: FC<AddReadingProps> = ({ selectedBook, onReadChange }) => {
       setPageError('');
     }
 
-    const requestData = {
-      id: selectedBook!,
-      page: data.page,
-    };
-
-    if (!read) {
-      dispatch(readingStart(requestData));
-      setRead(true);
-      onReadChange(true);
-    } else {
-      dispatch(readingStop(requestData));
-      setRead(false);
-      onReadChange(false);
-
-      if (pageNumber === infoAboutBook.totalPages) {
-        openModal('readBook');
+    if (!isReading) {
+      if (infoAboutBook.status === 'done') {
+        toast.error('This book is already read.');
+        return;
       }
 
-      setValue('page', String(pageNumber));
+      const requestData = {
+        id: selectedBook,
+        page: pageNumber,
+      };
+
+      dispatch(readingStart(requestData))
+        .unwrap()
+        .then(() => {
+          onReadChange(true);
+          toast.success('You started reading this book!');
+        })
+        .catch(err => toast.error(err || 'Error starting reading'));
+    } else {
+      const activeRecord = readBook.find(r => r._id === selectedBook && !r.endDate);
+      if (!activeRecord) return;
+
+      const requestData = {
+        id: selectedBook,
+        page: pageNumber,
+      };
+
+      dispatch(readingStop(requestData))
+        .unwrap()
+        .then(() => {
+          onReadChange(false);
+          toast.success('You stopped reading this book.');
+
+          if (pageNumber === infoAboutBook.totalPages) {
+            openModal('readBook');
+          }
+        })
+        .catch(err => toast.error(err || 'Error stopping reading'));
     }
+
+    setValue('page', String(pageNumber));
   };
 
   return (
     <div className={s.container}>
-      <h2 className={s.title}>{!read ? 'Start page' : 'Stop page'}:</h2>
+      <h2 className={s.title}>{isReading ? 'Stop page' : 'Start page'}:</h2>
       <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
         <div className={s.wrapperInput}>
           <div className={s.labelContainer}>
@@ -104,7 +125,7 @@ const AddReading: FC<AddReadingProps> = ({ selectedBook, onReadChange }) => {
           {pageError && <p className={s.error}>{pageError}</p>}
         </div>
         <button type="submit" className={s.button} disabled={!!pageError}>
-          {read ? 'To stop' : 'To start'}
+          {isReading ? 'To stop' : 'To start'}
         </button>
       </form>
       {modalType === 'readBook' && <IsReadBookModal isOpen={isOpen} onClose={closeModal} />}

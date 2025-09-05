@@ -1,11 +1,9 @@
-import { FC } from 'react';
 import clsx from 'clsx';
 import Icon from '../../Icon/Icon';
-
 import { InputFieldProps } from '../auth-types';
 import s from './InputField.module.css';
 
-const InputField: FC<InputFieldProps> = ({
+const InputField = ({
   type,
   label,
   placeholder,
@@ -17,7 +15,7 @@ const InputField: FC<InputFieldProps> = ({
   showPassword,
   onTogglePassword,
   successMessage,
-}) => {
+}: InputFieldProps) => {
   return (
     <label className={s.labelWrapper}>
       <div

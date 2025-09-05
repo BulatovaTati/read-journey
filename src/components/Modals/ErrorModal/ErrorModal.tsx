@@ -1,5 +1,3 @@
-import { FC } from 'react';
-
 import ModalWrapper from '../../ModalWrapper/ModalWrapper';
 import s from '../ModalAddToLibrary/ModalAddToLibrary.module.css';
 
@@ -8,7 +6,7 @@ type ErrorModalProps = {
   onClose: () => void;
 };
 
-const ErrorModal: FC<ErrorModalProps> = ({ isOpen, onClose }) => {
+const ErrorModal = ({ isOpen, onClose }: ErrorModalProps) => {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
       <p className={s.title}>Ooops</p>
@@ -18,4 +16,5 @@ const ErrorModal: FC<ErrorModalProps> = ({ isOpen, onClose }) => {
     </ModalWrapper>
   );
 };
+
 export default ErrorModal;

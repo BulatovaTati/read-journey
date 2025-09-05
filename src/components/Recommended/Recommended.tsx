@@ -1,5 +1,3 @@
-import { JSX } from 'react';
-
 import Pagination from '../Pagination/Pagination';
 import Dashboard from '../Dashboard/Dashboard';
 import Quote from '../Quote/Quote';
@@ -12,7 +10,7 @@ import { useRecommendedBooks } from '../../hooks/useRecommendedBooks';
 
 import s from './Recommended.module.css';
 
-const Recommended = (): JSX.Element => {
+const Recommended = () => {
   const { isDesktop } = useMedia();
   const { results, isLoading, page, totalPages, handlePageChange } = useRecommendedBooks();
 
